@@ -12,6 +12,7 @@ export default function Sidebar() {
                     <li className="py-5 text-center hover:bg-[#009099]"><a href="#" className="text-white">MMI</a></li>
                     <li className="py-5 text-center hover:bg-[#009099]"><a href="#" className="text-white">SSA</a></li>
                 </ul>
+                <div className="bg-[#1D242E] h-[5%] text-white text-opacity-70 text-[11px] font-normal flex justify-center items-center">OMAHTI @ 2023</div>
             </div>
         </div>
     )
