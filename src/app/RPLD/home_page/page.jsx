@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export default function HomePage() {
     return (
-        <div className="p-[18px] bg-white h-screen w-screen">
+        <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
            
             <Image 
                 src={yellowdots}
