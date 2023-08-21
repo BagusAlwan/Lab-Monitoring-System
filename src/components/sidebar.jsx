@@ -1,6 +1,6 @@
 export default function Sidebar() {
     return ( 
-        <div className="bg-[#1D242E] h-screen w-[10%] flex justify-between flex-col content-center ">
+        <div className="bg-[#1D242E] h-screen w-[10%] flex justify-between flex-col content-stretch">
             <div className="px-6 py-10 text-lg font-semibold leading-normal justify-self-stretch">
                 <h2 className="text-center lg:text-2xl">Admin</h2>
                 

@@ -9,7 +9,7 @@ export default function Layout() {
 
 
     return (
-        <div className="h-screen flex flex-row justify-start">
+        <div className="h-screen flex flex-row justify-start ">
             <Sidebar />
 
 
@@ -38,17 +38,17 @@ export default function Layout() {
 
 
                     <div className="flex flex-row mt-2">                        
-                    <DatePicker.RangePicker  className="w-[25%] lg:w-[800px] lg:h-[50px] "/>
+                    <DatePicker.RangePicker  className="w-[35%] 2xl:w-[800px] 2xl:h-[50px] "/>
 
 
-                        <div className="ml-[23px] w-[15%] h-9 lg:h-[50px] relative">
-                        <div className="Rectangle17 w-[100%] h-9 lg:h-[50px] absolute bg-teal-600 rounded flex items-center justify-center" />
-                        <div className="PenggunaanAlat  left-[30px] top-[7.91px] absolute text-center text-white text-base font-normal">Penggunaan Alat</div>
-                        </div>
+                        <div className="ml-[23px] w-[15%] h-9 2xl:h-[50px] relative flex justify-center items-center">
+                            <div className="Rectangle17 w-[100%] h-9 2xl:h-[50px] absolute bg-teal-600 rounded flex items-center justify-center" />
+                            <div className="PenggunaanAlat absolute text-center text-white text-base 2xl:text-xl font-normal">Penggunaan Alat</div>
+                        </div> 
 
-                        <div className="ml-[23px] w-[15%] h-9 lg:h-[50px] relative">
-                        <div className="Rectangle17 w-[100%] h-9 lg:h-[50px] absolute bg-teal-600 rounded" />
-                        <div className="PenggunaanAlat left-[30px] top-[7.91px] absolute text-center text-white text-base font-normal">Detail Pengunjung</div>
+                        <div className="ml-[23px] w-[15%] h-9 2xl:h-[50px] relative flex justify-center items-center">
+                            <div className="Rectangle17 w-[100%] h-9 2xl:h-[50px] absolute bg-teal-600 rounded" />
+                            <div className="PenggunaanAlat absolute text-center text-white text-base 2xl:text-xl font-normal  ">Detail Pengunjung</div>
                         </div>
 
                     </div>
@@ -56,9 +56,9 @@ export default function Layout() {
 
                     <div className="flex flex-row justify-start pt-[47px]">                        
                         
-                        <div className="Rectangle mr-[42px] lg:w-[474px] lg:h-[449px] xl:w-[874px] xl:h-[849px] bg-white rounded border border-gray-800" />
+                        <div className="Rectangle mr-[42px] lg:w-[474px] lg:h-[449px] 2xl:w-[874px] 2xl:h-[849px] bg-white rounded border border-gray-800" />
 
-                        <div className="Rectangle lg:w-[554px] lg:h-[449px] xl:w-[1054px] xl:h-[849px] bg-white rounded border border-gray-800" />
+                        <div className="Rectangle lg:w-[554px] lg:h-[449px] 2xl:w-[1054px] 2xl:h-[849px] bg-white rounded border border-gray-800" />
 
                     </div>
 
