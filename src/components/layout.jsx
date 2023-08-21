@@ -1,9 +1,12 @@
+'use client'
 import Sidebar from "./sidebar"
 import Image from "next/image"
 import dot from "../components/images/dot.png"
-import DatePicker from "./datepicker"
+import { DatePicker } from "antd"
+
 
 export default function Layout() {
+
 
     return (
         <div className="h-screen flex flex-row justify-start">
@@ -31,23 +34,21 @@ export default function Layout() {
                 
                 {/* content */}
                 <div className="bg-slate-50 p-8 ">
-                    <div className="text-gray-800 text-xl font-normal">Periode</div>
+                    <div className="text-gray-800 text-xl lg:text-2xl font-normal">Periode</div>
 
 
                     <div className="flex flex-row mt-2">                        
-                        
-                        {/* <DatePicker/> */}
+                    <DatePicker.RangePicker  className="w-[25%] lg:w-[800px] lg:h-[50px] "/>
 
-                        <div className="TopBarBg w-[340px] h-[38px] bg-slate-200 rounded border border-gray-800" />
 
-                        <div className="ml-[23px] w-56 h-9 relative">
-                        <div className="Rectangle17 w-56 h-9 left-0 top-0 absolute bg-teal-600 rounded" />
-                        <div className="PenggunaanAlat w-40 h-5 left-[30px] top-[7.91px] absolute text-center text-white text-base font-normal">Penggunaan Alat</div>
+                        <div className="ml-[23px] w-[15%] h-9 lg:h-[50px] relative">
+                        <div className="Rectangle17 w-[100%] h-9 lg:h-[50px] absolute bg-teal-600 rounded flex items-center justify-center" />
+                        <div className="PenggunaanAlat  left-[30px] top-[7.91px] absolute text-center text-white text-base font-normal">Penggunaan Alat</div>
                         </div>
 
-                        <div className="ml-[23px] w-56 h-9 relative">
-                        <div className="Rectangle17 w-56 h-9 left-0 top-0 absolute bg-teal-600 rounded" />
-                        <div className="PenggunaanAlat w-40 h-5 left-[30px] top-[7.91px] absolute text-center text-white text-base font-normal">Detail Pengunjung</div>
+                        <div className="ml-[23px] w-[15%] h-9 lg:h-[50px] relative">
+                        <div className="Rectangle17 w-[100%] h-9 lg:h-[50px] absolute bg-teal-600 rounded" />
+                        <div className="PenggunaanAlat left-[30px] top-[7.91px] absolute text-center text-white text-base font-normal">Detail Pengunjung</div>
                         </div>
 
                     </div>
@@ -55,9 +56,9 @@ export default function Layout() {
 
                     <div className="flex flex-row justify-start pt-[47px]">                        
                         
-                    <div className="Rectangle mr-[42px] w-[474px] h-[449px] bg-white rounded border border-gray-800" />
+                        <div className="Rectangle mr-[42px] lg:w-[474px] lg:h-[449px] xl:w-[874px] xl:h-[849px] bg-white rounded border border-gray-800" />
 
-                        <div className="Rectangle w-[554px] h-[449px] bg-white rounded border border-gray-800" />
+                        <div className="Rectangle lg:w-[554px] lg:h-[449px] xl:w-[1054px] xl:h-[849px] bg-white rounded border border-gray-800" />
 
                     </div>
 
