@@ -8,13 +8,13 @@ export default function AdminList() {
     
     // title
     <div className="flex-1 bg-slate-50">
-        <div className=" bg-white h-24 p-8 flex flex-row items-center justify-between ">
-            <h1 className="text-3xl font-extrabold text-black">Lab Rekayasa Perangkat Lunak dan Data</h1>
+        <div className=" bg-white h-[150px] md:h-24 p-8 pt-[50px] md:flex md:flex-row grid grid-rows-2 gap-y-12 items-center justify-between ">
+            <h1 className="2xl:text-4xl xl:text-3xl lg:text-2xl text-xl font-extrabold text-black">Lab Rekayasa Perangkat Lunak dan Data</h1>
             <div className="flex flex-row">
                 <Image
                     src={dot}
                     alt="dot"
-                    width={20}
+                    width={21}
                     height={20}
                     className="mr-3"
                 />
@@ -29,7 +29,7 @@ export default function AdminList() {
 
 
             <div className="flex flex-row justify-between mt-2"> 
-                <div className="flex flex-row w-[100%] ">
+                <div className="flex flex-row w-full ">
                     <DatePicker.RangePicker  className="w-[35%] 2xl:w-[800px] 2xl:h-[50px] "/>
 
 
@@ -45,7 +45,7 @@ export default function AdminList() {
                 </div>                   
                 
 
-                <div className="flex flex-row lg:mr-3 xl:mr-10 2xl:mr-[90px] ">
+                <div className="flex flex-row  2xl:mr-[90px] ">
                     <div className="flex justify-center items-center px-2">
                         <Image
                             src={filter}
@@ -73,7 +73,7 @@ export default function AdminList() {
 
             {/* List */}
 
-            <div className="lg:pt-[25px] pt-[47px] mt-9 lg:w-[848px] lg:h-[349px] xl:w-[1048px] xl:h-[449px] 2xl:w-[2148px] 2xl:h-[949px] bg-white rounded border border-gray-800" />                        
+            <div className="lg:pt-[25px] pt-[47px] mt-9 lg:w-full lg:h-[349px]  xl:h-[449px]  2xl:h-[949px] bg-white rounded border border-gray-800" />                        
                 
             
 

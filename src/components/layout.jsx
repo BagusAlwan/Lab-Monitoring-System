@@ -10,8 +10,8 @@ export default function Layout() {
 
 
             {/* Content */}
-            {/* <AdminGraph /> */}
-            <AdminList />
+            <AdminGraph />
+            {/* <AdminList /> */}
 
             
         </div>

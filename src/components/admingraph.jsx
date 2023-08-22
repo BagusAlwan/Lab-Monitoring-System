@@ -44,11 +44,11 @@ export default function AdminGrapgh() {
             </div>
 
 
-            <div className="flex flex-row justify-start lg:pt-[25px] pt-[47px]">                        
+            <div className="grid grid-cols-2 grid-flow-col gap-8 justify-start lg:pt-[25px] pt-[47px]  ">                        
                 
-                <div className="Rectangle mr-[42px] lg:w-[374px] lg:h-[349px] xl:w-[474px] xl:h-[449px] 2xl:w-[974px] 2xl:h-[949px] bg-white rounded border border-gray-800" />
+                <div className="Rectangle col-span-1 lg:h-[349px]  xl:h-[449px]  2xl:h-[949px] bg-white rounded border border-gray-800" />
 
-                <div className="Rectangle lg:w-[454px] lg:h-[349px] xl:w-[554px] xl:h-[449px] 2xl:w-[1254px] 2xl:h-[949px] bg-white rounded border border-gray-800" />
+                <div className="Rectangle col-span-4 lg:h-[349px] xl:h-[449px] 2xl:h-[949px] bg-white rounded border border-gray-800" />
 
             </div>
 
