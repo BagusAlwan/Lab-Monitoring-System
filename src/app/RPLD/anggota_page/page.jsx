@@ -5,7 +5,7 @@ import yellowdots from '../../../components/images/yellowdots.png'
 
 export default function AnggotaPage() {
     return (
-        <div className="p-[18px] bg-white h-screen w-screen overflow-hidden">
+        <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
            
             <Image 
                 src={yellowdots}

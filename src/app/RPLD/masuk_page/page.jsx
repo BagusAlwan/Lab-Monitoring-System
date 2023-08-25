@@ -6,7 +6,7 @@ import robot from '../../../components/images/robot.png'
 
 export default function DataPage() {
     return (
-        <div className="p-[18px] bg-white h-screen w-screen overflow-hidden">
+        <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
            
             <Image 
                 src={yellowdots}
