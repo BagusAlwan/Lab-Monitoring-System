@@ -1,13 +1,20 @@
+'use client'
+import AdminGraph from "./admingraph"
+import AdminList from "./adminlist"
 import Sidebar from "./sidebar"
 
 export default function Layout() {
-
     return (
-        <div className="h-screen flex flex-row justify-start">
+        <div className="h-screen flex flex-row justify-start ">
             <Sidebar />
-            <div className="flex-1 p-8 border border-1 bg-white">
 
-            </div>
+
+            {/* Content */}
+            
+            <AdminGraph />
+            {/* <AdminList /> */}
+
+            
         </div>
     )
 }
