@@ -1,16 +1,25 @@
 import Image from "next/image"
-import dot from "../components/images/dot.png"
+import dot from "../components/images/dot.svg"
 import { DatePicker } from "antd"
 import DateNow from "../components/date"
+import { useState } from "react"
+import navbararrow from "../components/images/navbararrow.svg"
+import navbararrow2 from "../components/images/navbararrow2.svg"
 
 
-export default function AdminGrapgh() {
+export default function AdminGrapgh({isOpen, toggleNav}) {
     
-    
+        const callParentFunction = () => {
+            toggleNav(); // Call the parent's function
+        };
+
+
     return (
     
     // title
-    <div className=" flex-auto w-auto bg-slate-50">
+    <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
+
+
         <div className=" bg-white h-[150px] md:h-24 p-8 pt-[50px] md:flex md:flex-row grid grid-rows-2 gap-y-12 items-center justify-between ">
             <h1 className="2xl:text-4xl xl:text-3xl lg:text-2xl text-xl font-extrabold text-black">Lab Rekayasa Perangkat Lunak dan Data</h1>
             <div className="flex flex-row">
@@ -26,6 +35,15 @@ export default function AdminGrapgh() {
                 <div className="text-black text-sm  md:text-base "><DateNow /></div>
             </div>
             
+        </div>
+
+        <div type="button" onClick={callParentFunction} className={` justify-self-start self-center md:hidden ${!isOpen ? 'absolute w-[10%] z-20 hidden ' : ' absolute  '}`}>
+                <Image 
+                alt="navbararrow"
+                src={ navbararrow2}
+                width={22}
+                height={94}
+                />
         </div>
         
         {/* content */}
@@ -59,11 +77,11 @@ export default function AdminGrapgh() {
 
 
             {/* sm and below graph */}
-            <div className=" mt-[47px]  sm:hidden grid grid-rows-2 gap-8">
+            <div className=" mt-[47px sm:hidden grid grid-rows-2 gap-8 pt-8">
             
-                <div className="Rectangle h-[350px] bg-sky-300 rounded border border-gray-800" />
+                <div className="Rectangle h-[300px] bg-sky-300 rounded border border-gray-800" />
 
-                <div className="Rectangle h-[350px] bg-sky-300 rounded border border-gray-800" />
+                <div className="Rectangle h-[300px] bg-sky-300 rounded border border-gray-800" />
 
             </div>
 

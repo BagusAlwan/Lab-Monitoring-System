@@ -4,6 +4,7 @@ import AdminList from "./adminlist"
 import Sidebar from "./sidebar"
 import Image from 'next/image'
 import navbararrow from "../components/images/navbararrow.svg"
+import navbararrow2 from "../components/images/navbararrow2.svg"
 import { useState } from "react"
 
 export default function Layout() {
@@ -19,14 +20,16 @@ export default function Layout() {
 
        
 
-        <div className="h-screen flex flex-row justify-start ">
+        <div className="h-screen overflow-hidden flex flex-row justify-start ">
             <Sidebar isOpen={isSidebarOpen} />
 
+            <div className=" absolute z-20 w-[10%]">
 
-            <div type="button" onClick={toggleNav} className=" absolute justify-self-start self-center md:hidden ">
+            </div>
+            <div type="button" onClick={toggleNav} className={` justify-self-start self-center md:hidden ${!isSidebarOpen ? 'hidden  ' : ' absolute '}`}>
                 <Image 
                 alt="navbararrow"
-                src={navbararrow}
+                src={isSidebarOpen ? navbararrow : navbararrow2}
                 width={22}
                 height={94}
                 />
@@ -34,7 +37,7 @@ export default function Layout() {
             </div>
             {/* Content */}
             
-            <AdminGraph />
+            <AdminGraph isOpen={!isSidebarOpen} toggleNav={toggleNav} />
             {/* <AdminList /> */}
 
             
