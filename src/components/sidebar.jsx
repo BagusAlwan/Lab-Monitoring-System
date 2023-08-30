@@ -1,7 +1,7 @@
 export default function Sidebar({isOpen}) {
 
     return ( 
-        <div className={`bg-[#1D242E] sm:w-[10%] h-full flex flex-col justify-start content-center md:ml-0 md:relative ${isOpen ? ' w-[10%] absolute ml-[-10%]' : ''}` }> 
+        <div className={`bg-[#1D242E] sm:w-[10%] h-full flex flex-col justify-start content-center md:ml-0 md:relative transition-all duration-300 md:transition-none ${isOpen ? ' w-[10%] absolute ml-[-10%]' : ''}` }> 
             <div className="px-6 py-10 text-lg font-semibold leading-normal flex justify-center items-center">
                 <h2 className="text-center 2xl:text-2xl">Admin</h2>
                 
