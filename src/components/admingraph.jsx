@@ -51,9 +51,13 @@ export default function AdminGrapgh() {
                 {/* sm and above graph */}
                 <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
 
-                    <div className="Rectangle bg-sky-300 rounded border border-gray-800" />
+                    <div className="Rectangle bg-sky-300 rounded border border-gray-800">
+                        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                    </div>
 
-                    <div className="Rectangle bg-sky-300 rounded border border-gray-800" />
+                    <div className="Rectangle bg-sky-300 rounded border border-gray-800">
+                        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=1773299836&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+                    </div>
 
                 </div>
 
