@@ -1,5 +1,5 @@
 import Image from "next/image"
-import dot from "../components/images/dot.png"
+import dot from "../components/images/dot.svg"
 import filter from "../components/images/filter.png"
 import { DatePicker } from "antd"
 
