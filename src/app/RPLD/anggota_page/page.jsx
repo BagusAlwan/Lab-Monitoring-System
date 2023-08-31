@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image'
+import Link from 'next/link'
 import yellowdots from '../../../components/images/yellowdots.png'
 
 export default function AnggotaPage() {
@@ -27,18 +28,17 @@ export default function AnggotaPage() {
             
 
             
-            
-            
-
             <div className="mt-[100px] h-12 relative flex justify-center" onClick={() => alert('Kamu MASUK')}>
-            <div className="w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
-            <div className="Anggota top-[10px] absolute text-center text-white text-lg font-normal">MASUK</div>
+                <div className="w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
+                <div className="Anggota top-[10px] absolute text-center text-white text-lg font-normal">MASUK</div>
             </div>
-            <div className="mt-4  h-12 relative flex justify-center" onClick={() => alert('Kamu KELUAR')}>
-            <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
-            <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">KELUAR</div>
-            </div>
-
+            
+            <Link href="/RPLD/alat_page">
+                <div className="mt-4  h-12 relative flex justify-center">
+                    <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
+                    <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">KELUAR</div>
+                </div>
+            </Link>
     
             
             
