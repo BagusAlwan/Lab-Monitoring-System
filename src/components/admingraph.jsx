@@ -37,10 +37,10 @@ export default function AdminGrapgh({isOpen, toggleNav}) {
             
         </div>
 
-        <div type="button" onClick={callParentFunction} className={` justify-self-start self-center md:hidden ${!isOpen ? 'absolute w-[10%] z-20 hidden ' : ' absolute  '}`}>
+        <div type="button" onClick={callParentFunction} className={` justify-self-start self-center md:hidden z-10 ${!isOpen ? 'absolute w-[10%] z-20' : ' absolute  '}`}>
                 <Image 
                 alt="navbararrow"
-                src={ navbararrow2}
+                src={!isOpen ? navbararrow : navbararrow2}
                 width={22}
                 height={94}
                 />
@@ -53,7 +53,7 @@ export default function AdminGrapgh({isOpen, toggleNav}) {
             <div className="flex flex-row  ">
                 <div className="flex flex-col">
                     <div className="text-gray-800 mb-1 2xl:mb-5 text-base lg:text-xl 2xl:text-2xl 2xl:font-medium font-normal">Periode</div>
-                    <DatePicker.RangePicker  className="w-[200px] md:w-[500px] 2xl:p-3 2xl:w-[900px] 2xl:mt-3  "/>
+                    <DatePicker.RangePicker  className="w-[200px] md:w-[500px] 2xl:p-3 2xl:w-[900px] 2xl:mt-3 "/>
                 </div>
                 <div className="flex flex-col md:flex-row 2xl:mt-11 pl-3 "> 
                     <div className=" p-[5px] mb-1 md:mt-6 md:mb-0 md:ml-5 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg ">
