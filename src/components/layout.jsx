@@ -26,15 +26,7 @@ export default function Layout() {
             <div className=" absolute z-20 w-[10%]">
 
             </div>
-            <div type="button" onClick={toggleNav} className={` justify-self-start self-center md:hidden ${!isSidebarOpen ? 'hidden  ' : ' absolute '}`}>
-                <Image 
-                alt="navbararrow"
-                src={isSidebarOpen ? navbararrow : navbararrow2}
-                width={22}
-                height={94}
-                />
-
-            </div>
+            
             {/* Content */}
             
             <AdminGraph isOpen={!isSidebarOpen} toggleNav={toggleNav} />

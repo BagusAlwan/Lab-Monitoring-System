@@ -29,11 +29,11 @@ export default function AdminGrapgh({ isOpen, toggleNav }) {
       <div
         type="button"
         onClick={callParentFunction}
-        className={` justify-self-start self-center md:hidden ${
-          !isOpen ? "absolute w-[10%] z-20 hidden " : " absolute  "
+        className={` justify-self-start self-center z-20 md:hidden ${
+          !isOpen ? "absolute w-[10%] " : " absolute  "
         }`}
       >
-        <Image alt="navbararrow" src={navbararrow2} width={22} height={94} />
+        <Image alt="navbararrow" src={isOpen? navbararrow2 : navbararrow} width={22} height={94} />
       </div>
 
       {/* content */}
@@ -58,14 +58,12 @@ export default function AdminGrapgh({ isOpen, toggleNav }) {
         {/* sm and above graph */}
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
           <div className="Rectangle bg-sky-300 rounded border border-gray-800" />
-
           <div className="Rectangle bg-sky-300 rounded border border-gray-800" />
         </div>
 
         {/* sm and below graph */}
         <div className=" mt-[47px sm:hidden grid grid-rows-2 gap-8 pt-8">
           <div className="Rectangle h-[300px] bg-sky-300 rounded border border-gray-800" />
-
           <div className="Rectangle h-[300px] bg-sky-300 rounded border border-gray-800" />
         </div>
       </div>
