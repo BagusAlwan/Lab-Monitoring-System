@@ -6,7 +6,7 @@ import { useState } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 
-export default function AdminGrapgh({ isOpen, toggleNav }) {
+export default function AdminGrapgh({ isOpen, toggleNav, toggleContent }) {
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
@@ -49,7 +49,7 @@ export default function AdminGrapgh({ isOpen, toggleNav }) {
             <div className=" p-[5px] mb-1 md:mt-6 md:mb-0 md:ml-5 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg ">
               Detail Pengunjung
             </div>
-            <div className=" p-[5px] md:mt-6 md:ml-7 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg ">
+            <div onClick={toggleContent} className=" p-[5px] md:mt-6 md:ml-7 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg ">
               Penggunaal Alat
             </div>
           </div>
