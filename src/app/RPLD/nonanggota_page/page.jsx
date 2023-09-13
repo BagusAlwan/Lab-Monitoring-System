@@ -10,6 +10,15 @@ export default function NonAnggotaPage() {
   const [nama, setNama] = useState("");
   const [nim, setNim] = useState("");
 
+  const date = new Date();
+
+  const makeApiCall = async () => {
+    await fetch('/api/sheets', {
+      method: 'POST',
+      body: JSON.stringify({ nim: nim, nama: nama, action: "IN", waktu: date })
+    })
+  }
+
   const handleNamaChange = (e) => {
     setNama(e.target.value);
   };
@@ -19,13 +28,13 @@ export default function NonAnggotaPage() {
   };
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Nama:", nama);
-    console.log("NIM:", nim);
-    alert(nama + " " + nim);
-
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Nama:", nama);
+  //   console.log("NIM:", nim);
+  //   alert(nama + " " + nim);
+  //   addRowToSheet(nim, nama, "IN", date)
+  // };
 
   return (
     <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
@@ -34,7 +43,7 @@ export default function NonAnggotaPage() {
         Masukan Data Berikut :{" "}
       </div>
       <div className="pt-[45px] flex justify-center items-center">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={makeApiCall}>
           <div>
             <label className="block mb-2 text-sm font-medium text-gray-900">
               Nama
@@ -63,7 +72,7 @@ export default function NonAnggotaPage() {
       <div
         className="mt-[100px] h-12 relative flex justify-center "
         // onClick={() => }
-        onClick={handleSubmit}
+        onClick={makeApiCall}
         style={{ cursor: "pointer" }}
       >
         <div className="w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />

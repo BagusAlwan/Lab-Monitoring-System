@@ -17,24 +17,20 @@ const jwt = new JWT({
 });
 
 
-async function addRowToSheet(nim, nama, action, waktu) {
+export async function addRowToSheet(nim, nama, action, waktu) {
     const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
     await doc.loadInfo(); 
     const sheet = doc.sheetsByIndex[0]; 
     await sheet.addRow({ NIM: nim, Nama: nama, Action: action, Waktu: waktu });
 }
 
-async function addRowToSheet2(nim, nama, barang) {
+export async function addRowToSheet2(nim, nama, barang) {
   const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[1]; 
   await sheet.addRow({ NIM: nim, Nama: nama, Barang: barang });
 }
 
-export default {
-  addRowToSheet,
-  addRowToSheet2
-};
 
  addRowToSheet('22/492140/PA/21072', 'Bagus Alwan', 'Masuk', '15:00')
    .then(() => {
