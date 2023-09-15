@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 export async function POST(request){
   const data = await request.json()
   console.log(data)
-  const {nama, nim, action, date} = data
-  addRowToSheet(nama, nim, action, date)
+  const {date, nama, nim, action, time} = data
+  await addRowToSheet(date, nama, nim, action, time)
   
   return NextResponse.json({data})
 }

@@ -26,7 +26,9 @@ export default function NonAnggotaPage() {
         console.log("Nama:", nama);
         console.log("NIM:", nim);
         const action = "IN";
-        const date = new Date().toLocaleTimeString();
+        const time = new Date().toLocaleTimeString();
+        const date = new Date().toLocaleDateString();
+
 
         const res = await fetch('/api/sheets', {
             method: 'POST',
@@ -34,7 +36,7 @@ export default function NonAnggotaPage() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                nama, nim, action, date
+                date, nama, nim, action, time
             })
         })
     };
