@@ -1,38 +1,32 @@
-'use client'
-import AdminGraph from "./admingraph"
-import AdminList from "./adminlist"
-import Sidebar from "./sidebar"
-import Image from 'next/image'
-import navbararrow from "../components/images/navbararrow.svg"
-import navbararrow2 from "../components/images/navbararrow2.svg"
-import { useState } from "react"
+"use client";
+import AdminGraph from "./admingraph";
+import AdminList from "./adminlist";
+import Sidebar from "./sidebar";
+import { useState } from "react";
 
 export default function Layout() {
-    
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    const toggleNav = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-        // alert(`Kamu ${isSidebarOpen}`);
-    }
+  const toggleNav = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    // alert(`Kamu ${isSidebarOpen}`);
+  };
 
-    return (
+  const [showAdminGraph, setShowAdminGraph] = useState(true);
 
-       
+  const toggleContent = () => {
+    setShowAdminGraph(!showAdminGraph);
+  };
 
-        <div className="h-screen overflow-hidden flex flex-row justify-start ">
-            <Sidebar isOpen={isSidebarOpen} />
+  return (
+    <div className="h-screen overflow-hidden flex flex-row justify-start ">
+      <Sidebar isOpen={isSidebarOpen} />
 
-            <div className=" absolute z-20 w-[10%]">
+      <div className=" absolute z-20 w-[10%]"></div>
 
-            </div>
-            
-            {/* Content */}
-            
-            <AdminGraph isOpen={!isSidebarOpen} toggleNav={toggleNav} />
-            {/* <AdminList /> */}
+      {/* Content */}
 
-            
-        </div>
-    )
+      {showAdminGraph ? <AdminGraph isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} /> : <AdminList isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} />}
+    </div>
+  );
 }
