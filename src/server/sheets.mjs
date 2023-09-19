@@ -22,16 +22,16 @@ const visitorsdbIndex = 3;
 
 
 //In Out Sheet 
-async function addRowToSheet(date, nim, name, action, time) {
+export async function addRowToSheet(date, name, nim, action, time) {
   const correctedAction = actionCheck(action); 
   const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[inOutIndex]; 
-  await sheet.addRow({ Date: date, NIM: nim, Name: name, Action: correctedAction, Time: time });
+  await sheet.addRow({ Date: date, Name: name, NIM: nim, Action: correctedAction, Time: time });
 }
 
 //Tools Sheet
-async function addRowToSheet2(nim, name, tools) {
+export async function addRowToSheet2(nim, name, tools) {
   const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[toolsIndex]; 
@@ -39,7 +39,7 @@ async function addRowToSheet2(nim, name, tools) {
 }
 
 // to rename a sheet 
-async function renameSheet(new_sheet_name, index){
+export async function renameSheet(new_sheet_name, index){
   const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[index]; 
@@ -47,7 +47,7 @@ async function renameSheet(new_sheet_name, index){
 }
 
 // to add a visitor
-async function addVisitor(id, name, status) {
+export async function addVisitor(id, name, status) {
   const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[visitorsdbIndex]; 
@@ -55,7 +55,7 @@ async function addVisitor(id, name, status) {
 }
 
 // to uniformly input actions
-function actionCheck(action){
+export function actionCheck(action){
   let lowerCaseAction = action.toLowerCase();
 
   if (lowerCaseAction === 'in') lowerCaseAction = 'In';

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import yellowdots from "../../../components/images/yellowdots.png";
 import { useState } from "react";
-import { useRouter } from "next/router";
+
 
 export default function NonAnggotaPage() {
     const [nama, setNama] = useState("");
@@ -21,11 +21,31 @@ export default function NonAnggotaPage() {
     };
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmitIn = async (e) => {
         e.preventDefault();
         console.log("Nama:", nama);
         console.log("NIM:", nim);
         const action = "IN";
+        const time = new Date().toLocaleTimeString();
+        const date = new Date().toLocaleDateString();
+
+
+        const res = await fetch('/api/sheets', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                date, nama, nim, action, time
+            })
+        })
+    };
+
+    const handleSubmitOut = async (e) => {
+        e.preventDefault();
+        console.log("Nama:", nama);
+        console.log("NIM:", nim);
+        const action = "OUT";
         const time = new Date().toLocaleTimeString();
         const date = new Date().toLocaleDateString();
 
@@ -48,7 +68,7 @@ export default function NonAnggotaPage() {
                 Masukan Data Berikut :{" "}
             </div>
             <div className="pt-[45px] flex justify-center items-center">
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div>
                         <label className="block mb-2 text-sm font-medium text-gray-900">
                             Nama
@@ -77,7 +97,7 @@ export default function NonAnggotaPage() {
             <div
                 className="mt-[100px] h-12 relative flex justify-center "
                 // onClick={() => }
-                onClick={handleSubmit}
+                onClick={handleSubmitIn}
                 style={{ cursor: "pointer" }}
             >
                 <div className="w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
@@ -86,14 +106,16 @@ export default function NonAnggotaPage() {
                 </div>
             </div>
 
-            <Link href="/RPLD/alat_page">
-                <div className="mt-4  h-12 relative flex justify-center">
-                    <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
-                    <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">
-                        KELUAR
-                    </div>
+
+            <div
+                onClick={handleSubmitOut}
+                style={{ cursor: "pointer" }} className="mt-4  h-12 relative flex justify-center">
+                <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
+                <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">
+                    KELUAR
                 </div>
-            </Link>
+            </div>
+
         </div>
     );
 }

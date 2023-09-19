@@ -2,7 +2,7 @@ import Image from "next/image";
 import dot from "../components/images/dot.svg";
 import { DatePicker } from "antd";
 import DateNow from "../components/date";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 
@@ -10,6 +10,16 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
+
+  useEffect(() => {
+    const iframe = document.getElementById('myIframe');
+
+    function reloadIframe() {
+      iframe.src = iframe.src;
+    }
+    const intervalId = setInterval(reloadIframe, 30000);
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
@@ -29,9 +39,8 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
       <div
         type="button"
         onClick={callParentFunction}
-        className={` justify-self-start self-center z-20 md:hidden ${
-          !isOpen ? "absolute w-[10%] " : " absolute  "
-        }`}
+        className={` justify-self-start self-center z-20 md:hidden ${!isOpen ? "absolute w-[10%] " : " absolute  "
+          }`}
       >
         <Image
           alt="navbararrow"
@@ -46,7 +55,7 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
         <div className="flex flex-row  ">
           <div className="flex flex-col">
             <div className="text-gray-800 mb-1 2xl:mb-5 text-base lg:text-xl 2xl:text-2xl 2xl:font-medium font-normal">
-              
+
             </div>
             <div className="w-[200px] md:w-[500px] 2xl:p-3 2xl:w-[900px] text-black font-bold lg:mt-4 2xl:mt-6 text-lg xl:text-2xl ">Detail Penggunaan Alat</div>
           </div>
@@ -67,10 +76,12 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
         {/* sm and above graph */}
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
           <iframe
+            id="myIframe"
             src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=232475588&amp;single=true&amp;widget=true&amp;headers=false"
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start   "
           ></iframe>
           <iframe
+            id="myIframe"
             src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=1908990259&amp;single=true&amp;widget=true&amp;headers=false"
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start "
           ></iframe>
