@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import yellowdots from "../../../components/images/yellowdots.png";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 export default function NonAnggotaPage() {
+    const router = useRouter()
     const [nama, setNama] = useState("");
     const [nim, setNim] = useState("");
 
@@ -39,6 +41,8 @@ export default function NonAnggotaPage() {
                 date, nama, nim, action, time
             })
         })
+
+        router.push('/RPLD/masuk_page')
     };
 
     const handleSubmitOut = async (e) => {
@@ -59,6 +63,8 @@ export default function NonAnggotaPage() {
                 date, nama, nim, action, time
             })
         })
+
+        router.push('/RPLD/keluar_page')
     };
 
     return (
