@@ -4,8 +4,33 @@ import Image from 'next/image'
 import yellowdots from '../../components/images/yellowdots.png'
 import robot from '../../components/images/robot.png'
 import Link from 'next/link'
+import { initFirebase } from '../firebase/firebase'
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { useRouter } from 'next/router';
+
 
 export default function DataPage() {
+    initFirebase();
+    const auth = getAuth();
+    const [user, loading] = useAuthState(auth); 
+    const router = useRouter();
+
+    // harusnya function ini tinggal di call aja ke button or smth?? 
+    
+    const signIn = async () => {
+        const user = await signInWithEmailAndPassword(auth, email, password)
+        console.log(user);
+    }
+
+    if (loading) {
+        return <div>LOADING...</div>
+    }
+
+    if (user) {
+        router.push("/admin_page");
+    }
+
     return (
         <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
            
