@@ -13,8 +13,6 @@ const jwt = new JWT({
   scopes: SCOPES,
 });
 
-
-
 //Sheet indexes 
 const inOutIndex = 0; 
 const toolsIndex = 1; 
