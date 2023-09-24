@@ -70,7 +70,7 @@ export default function NonAnggotaPage() {
     return (
         <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
             <Image src={yellowdots} alt="Main Screen" objectFit="contain" />
-            <div className="mt-[35%] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
+            <div className="mt-[100px] md:mt-0 lg:mt-[100px] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
                 Masukan Data Berikut :{" "}
             </div>
             <div className="pt-[45px] flex justify-center items-center">

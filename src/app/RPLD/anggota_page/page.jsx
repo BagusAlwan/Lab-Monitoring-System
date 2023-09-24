@@ -13,7 +13,7 @@ export default function AnggotaPage() {
                 alt="Main Screen"
                 objectFit='contain'
             />
-            <div className="mt-[40%] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">Pilih nama anggota : </div>
+            <div className="mt-[100px] md:mt-0 lg:mt-[100px] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">Pilih nama anggota : </div>
             <div className='pt-[75px] flex justify-center items-center'>
                 <select className="w-72 border border-black bg-white text-black text-sm rounded block focus:ring-teal-600 focus:border-teal-600 p-2.5">
                 <option selected>Daftar nama</option>
