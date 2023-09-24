@@ -19,6 +19,8 @@ export default function AdminPage() {
         return <div>Sign in</div>
     }
 
+    //ini tinggal call auth.signOut() hrsnya auto sign out sih
+
     return (
         <div>
             <Layout />
