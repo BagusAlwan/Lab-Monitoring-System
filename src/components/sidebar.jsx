@@ -1,4 +1,4 @@
-export default function Sidebar({ isOpen }) {
+export default function Sidebar({ isOpen, auth }) {
   return (
     <div
       className={`bg-[#1D242E] sm:w-[10%] h-full flex flex-col justify-start content-center md:ml-0 md:relative transition-all duration-300 md:transition-none ${
@@ -31,7 +31,7 @@ export default function Sidebar({ isOpen }) {
             </a>
           </li>
         </ul>
-        <div className="Log Out Button">
+        <div className="Log Out Button" style={{ cursor: "pointer" }} onClick={() => auth.signOut()}> 
           <div className=" p-[5px] py-2 mx-[10px] mb-5 bg-teal-600 rounded-md text-[12px] 2xl:text-base lg:text-[10px] font-normal flex justify-center  text-center items-center">
             Keluar
           </div>
