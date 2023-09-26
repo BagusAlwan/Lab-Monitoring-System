@@ -60,7 +60,7 @@ export default function AdminGrapgh({ isOpen, toggleNav, toggleContent }) {
               Detail Pengunjung
             </div>
             <div onClick={toggleContent} style={{ cursor: "pointer" }} className=" p-[5px] md:mt-6 md:ml-7 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg ">
-              Penggunaal Alat
+              Penggunaan Alat
             </div>
           </div>
         </div>

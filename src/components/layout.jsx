@@ -4,7 +4,7 @@ import AdminList from "./adminlist";
 import Sidebar from "./sidebar";
 import { useState } from "react";
 
-export default function Layout() {
+export default function Layout({ auth }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleNav = () => {
@@ -20,7 +20,7 @@ export default function Layout() {
 
   return (
     <div className="h-screen overflow-hidden flex flex-row justify-start ">
-      <Sidebar isOpen={isSidebarOpen} />
+      <Sidebar isOpen={isSidebarOpen} auth={auth} />
 
       <div className=" absolute z-20 w-[10%]"></div>
 
