@@ -26,18 +26,18 @@ export default function HomePage() {
             <div className="h-10 pt-[24px] text-center text-gray-800 text-2xl font-extrabold leading-10 drop-shadow-xl">Lab Rekayasa Perangkat Lunak dan Data</div>
             
             
-            <Link href="/RPLD/anggota_page">
+            {/* <Link href="/RPLD/anggota_page">
             <div className="mt-[100px] h-12 relative flex justify-center">
             <div className="w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
             <div className="Anggota top-[10px] absolute text-center text-white text-lg font-normal">ANGGOTA</div>
             </div>
-            </Link>
+            </Link> */}
 
            
-            <Link href="/RPLD/nonanggota_page">
-            <div className="mt-4  h-12 relative flex justify-center">
+            <Link href="/RPLD/pendatang_page">
+            <div className="mt-[100px] h-12 relative flex justify-center">
             <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
-            <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">NON-ANGGOTA</div>
+            <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">Pendatang</div>
             </div>
             </Link>
             
