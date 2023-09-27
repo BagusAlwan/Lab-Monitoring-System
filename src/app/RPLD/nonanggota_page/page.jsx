@@ -64,7 +64,7 @@ export default function NonAnggotaPage() {
             })
         })
 
-        router.push('/RPLD/keluar_page')
+        router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}`)
     };
 
     return (

@@ -17,7 +17,7 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
     function reloadIframe() {
       iframe.src = iframe.src;
     }
-    const intervalId = setInterval(reloadIframe, 3000);
+    const intervalId = setInterval(reloadIframe, 30000);
     return () => clearInterval(intervalId);
   }, []);
 
