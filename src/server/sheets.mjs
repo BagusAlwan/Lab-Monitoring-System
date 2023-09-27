@@ -29,11 +29,11 @@ export async function addRowToSheet(date, name, nim, action, time) {
 }
 
 //Tools Sheet
-export async function addRowToSheet2(nim, name, tools) {
+export async function addRowToSheet2(date, name, nim, tools) {
   const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[toolsIndex]; 
-  await sheet.addRow({ NIM: nim, Name: name, Tools: tools });
+  await sheet.addRow({ Date:date, Nama: name, NIM: nim, Tools: tools });
 }
 
 // to rename a sheet 

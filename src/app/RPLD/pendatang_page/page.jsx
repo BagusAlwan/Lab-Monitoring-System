@@ -64,10 +64,11 @@ export default function NonAnggotaPage() {
             })
         })
 
-        router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}`)
+        router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}&date=${date}`)
     };
 
     return (
+
         <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
             <Image src={yellowdots} alt="Main Screen" objectFit="contain" />
             <div className="mt-[100px] md:mt-0 lg:mt-[100px] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
@@ -123,5 +124,6 @@ export default function NonAnggotaPage() {
             </div>
 
         </div>
+
     );
 }
