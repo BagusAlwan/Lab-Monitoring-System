@@ -13,7 +13,7 @@ export default function DataPage() {
                 alt="Main Screen"
                 objectFit='contain'
             />
-            <div className='mt-[40%] flex justify-center items-center'>
+            <div className='mt-[100px] md:mt-0 lg:mt-[100px] flex justify-center items-center'>
             <Image 
                 src={robot2}
                 alt="Main Screen"
