@@ -33,7 +33,7 @@ export default function AlatPage() {
             })
         })
 
-        router.push('/RPLD/keluar_page')
+        router.push('/RPLD/masuk_page')
     };
 
     return (
@@ -60,7 +60,7 @@ export default function AlatPage() {
 
             <div className="mt-[100px]  h-12 relative flex justify-center" onClick={handleSubmitAlat}>
                 <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
-                <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">KELUAR</div>
+                <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">MASUK</div>
             </div>
         </div>
     );

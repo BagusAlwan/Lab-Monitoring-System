@@ -61,13 +61,13 @@ export default function AdminGrapgh({ isOpen, toggleNav, toggleContent }) {
             </div>
           </div>
           <div className="flex flex-col md:flex-row 2xl:mt-11 pl-3 ">
-            <div className=" p-[5px] mb-1 md:mt-6 md:mb-0 md:ml-5 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg ">
+            <div className=" text-white p-[5px] mb-1 md:mt-6 md:mb-0 md:ml-5 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg ">
               Detail Pengunjung
             </div>
             <div
               onClick={toggleContent}
               style={{ cursor: "pointer" }}
-              className=" p-[5px] md:mt-6 md:ml-7 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg "
+              className=" text-white p-[5px] md:mt-6 md:ml-7 md:px-3 2xl:ml-7 2xl:px-3 bg-teal-600 flex items-center justify-center rounded-md text-center text-xs xl:text-base 2xl:text-lg "
             >
               Penggunaan Alat
             </div>
