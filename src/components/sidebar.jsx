@@ -6,7 +6,7 @@ export default function Sidebar({ isOpen, auth }) {
       }`}
     >
       <div className="px-6 py-10 text-lg font-semibold leading-normal flex justify-center items-center">
-        <h2 className="text-center 2xl:text-2xl">Admin</h2>
+        <h2 className="text-center text-white 2xl:text-2xl">Admin</h2>
       </div>
       <div className="bg-[#283342] h-full w-auto flex flex-col justify-between items-stretch content-center">
         <ul className="content-center">
