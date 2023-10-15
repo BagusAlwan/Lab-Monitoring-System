@@ -22,7 +22,7 @@ const visitorsdbIndex = 8;
 //In Out Sheet 
 export async function addRowToSheet(date, name, nim, action, time) {
   const correctedAction = actionCheck(action); 
-  const doc = new GoogleSpreadsheet(process.env.GOOGLE_LINK, jwt);
+  const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[inOutIndex]; 
   await sheet.addRow({ Date: date, Name: name, NIM: nim, Action: correctedAction, Time: time });
@@ -91,5 +91,6 @@ export function actionCheck(action){
   return lowerCaseAction;
 }
 
-visitorCheck('2wfowenfaio', 'arya', 'Student');
-
+// visitorCheck('2wfowenfaio', 'arya', 'Student');
+addRowToSheet()
+addRowToSheet('14/10/2023', 'www', '22/948334/34', "In", '15:00')
