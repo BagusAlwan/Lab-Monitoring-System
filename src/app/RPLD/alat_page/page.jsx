@@ -51,10 +51,10 @@ export default function AlatPage() {
                     value={selectedOption} // Set the selected value based on the state
                 >
                     <option value="">Daftar Alat</option>
-                    <option value="Alat 2">Alat 2</option>
-                    <option value="Alat 4">Alat 4</option>
-                    <option value="Alat 1">Alat 1</option>
-                    <option value="Alat 3">Alat 3</option>
+                    <option value="Komputer HPC">Komputer HPC</option>
+                    <option value="Layar LCD Chenghong">Layar LCD Chenghong</option>
+                    <option value="Coffe Maker">Coffe Maker</option>
+                    <option value="Alat Pribadi">Alat Pribadi</option>
                 </select>
             </div>
 
