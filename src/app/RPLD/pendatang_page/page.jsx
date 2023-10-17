@@ -29,21 +29,49 @@ export default function NonAnggotaPage() {
         const action = "IN";
         const time = new Date().toLocaleTimeString();
         const date = new Date().toLocaleDateString();
+      
+        try {
+          // First, make a GET request to the verification API
+          const verificationResponse = await fetch(`http://localhost:8080/verify/${nama}/${nim}`); // Adjust the URL accordingly
+      
+          if (verificationResponse.ok) {
+            // The verification API returned a successful response
+            const verificationData = await verificationResponse.json();
+      
+            if (verificationData.verified) {
+              // The verification was successful, now make the POST request
+              const postResponse = await fetch('/api/sheets', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  date, nama, nim, action, time
+                })
+              });
+      
+              if (postResponse.ok) {
+                // The POST request was successful, you can now navigate to the next page
+                router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}&date=${date}`);
+              } else {
+                console.error('Failed to make POST request:', postResponse.status);
+                alert("Failed to make POST request",  postResponse.status);
+              }
+            } else {
+              console.error('Verification failed. The user is not valid.');
+              alert('Verification failed. The user is not valid.');
 
-
-        const res = await fetch('/api/sheets', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                date, nama, nim, action, time
-            })
-        })
-
-        router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}&date=${date}`)
-    };
-
+            }
+          } else {
+            console.error('Failed to verify the user:', verificationResponse.status);
+            alert('Failed to verify the user:', verificationResponse.status);
+          }
+        } catch (error) {
+          console.error('An error occurred:', error);
+          alert('An error occurred:', error);
+        }
+      };
+      
     return (
 
         <div className="p-[18px] bg-white h-screen w-screen overflow-auto">

@@ -22,7 +22,7 @@ const visitorsdbIndex = 8;
 //In Out Sheet 
 export async function addRowToSheet(date, name, nim, time, action) {
   const correctedAction = actionCheck(action); 
-  const doc = new GoogleSpreadsheet('1GTvhgEHVrt_YloDFUd66hDHiuqar0EIWA07_IDMcnBk', jwt);
+  const doc = new GoogleSpreadsheet(process.env.GOOGLE_LINK, jwt);
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[inOutIndex]; 
   await sheet.addRow({ Date: date, Name: name, NIM: nim,Time: time, Action: correctedAction});
