@@ -55,7 +55,7 @@ export default function AlatPage() {
           <option value="Alat Pribadi">Alat Pribadi</option>
           <option value="Komputer HPC">Komputer HPC</option>
           <option value="Layar LCD Chenghong">Layar LCD Chenghong</option>
-          <option value="Coffe Maker">Coffe Maker</option>
+          <option value="Coffee Maker">Coffee Maker</option>
         </select>
       </div>
 

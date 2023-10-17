@@ -94,5 +94,6 @@ export function actionCheck(action){
   return lowerCaseAction;
 }
 
-visitorCheck('2wfowenfaio', 'arya', 'Student');
-
+// visitorCheck('2wfowenfaio', 'arya', 'Student');
+addRowToSheet()
+addRowToSheet('14/10/2023', 'www', '22/948334/34', "In", '15:00')
