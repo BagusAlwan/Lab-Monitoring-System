@@ -31,12 +31,18 @@ export async function addRowToSheet(date, name, nim, time, action) {
 //Tools Sheet
 export async function addRowToSheet2(date, name, nim, tools) {
   const doc = new GoogleSpreadsheet(process.env.GOOGLE_LINK, jwt);
-  if(tools == "null"){
-    return; 
-  }
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[toolsIndex]; 
-  await sheet.addRow({ Date:date, Nama: name, NIM: nim, Tools: tools });
+  // await sheet.addRow({ Date:date, Nama: name, NIM: nim, Tools: tools });
+  if (Array.isArray(tools)) {
+    // If 'tools' is an array, add each item as a separate row
+    for (const tool of tools) {
+      await sheet.addRow({ Date: date, Nama: name, NIM: nim, Tools: tool });
+    }
+  } else {
+    // If 'tools' is not an array, add it as a single row
+    await sheet.addRow({ Date: date, Nama: name, NIM: nim, Tools: tools });
+  }
 }
 
 // to rename a sheet 

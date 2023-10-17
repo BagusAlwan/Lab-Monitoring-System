@@ -12,15 +12,26 @@ export default function AlatPage() {
   const nim = searchParams.get("nim");
   const date = searchParams.get("date");
 
-  const [selectedOption, setSelectedOption] = useState("");
-  const handleSelectChange = (e) => {
-    setSelectedOption(e.target.value);
+
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const handleCheckboxChange = (option) => {
+    if (selectedOptions.includes(option)) {
+      setSelectedOptions(selectedOptions.filter((item) => item !== option));
+    } else {
+      setSelectedOptions([...selectedOptions, option]);
+    }
   };
 
   const handleSubmitAlat = async (e) => {
+    if (selectedOptions.length === 0) {
+      
+      return;
+    }
+
     e.preventDefault();
-    if (selectedOption === "null") {
-        return; 
+    if (selectedOptions === "null") {
+      return;
     }
     console.log("Nama:", name);
     console.log("NIM:", nim);
@@ -33,37 +44,57 @@ export default function AlatPage() {
         date,
         name,
         nim,
-        selectedOption,
+        selectedOptions,
       }),
     });
+
+    console.log("Selected Options:", selectedOptions);
 
     router.push("/RPLD/masuk_page");
   };
 
+  const alatOptions = [
+    "Alat Pribadi",
+    "Komputer HPC",
+    "Layar LCD Chenghong",
+    "Coffe Maker",
+  ];
+
   return (
     <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
       <Image src={yellowdots} alt="Main Screen" objectFit="contain" />
-      <div className="mt-[100px] md:mt-0 lg:mt-[100px]     h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
-        Pilih alat yg digunakan :{" "}
+      <div className="mt-[100px] md:mt-0 lg:mt-[100px] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
+        Pilih alat yg digunakan:
       </div>
       <div className="pt-[75px] flex justify-center items-center">
-        <select
-          className="w-72 border border-black bg-white text-black text-sm rounded block focus:ring-teal-600 focus:border-teal-600 p-2.5"
-          onChange={handleSelectChange} // Call handleSelectChange on select change
-          value={selectedOption} // Set the selected value based on the state
-        >
-          <option value="Alat Pribadi">Alat Pribadi</option>
-          <option value="Komputer HPC">Komputer HPC</option>
-          <option value="Layar LCD Chenghong">Layar LCD Chenghong</option>
-          <option value="Coffe Maker">Coffe Maker</option>
-        </select>
+        <ul>
+          {alatOptions.map((option) => (
+            <li key={option} className="mb-4">
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id={option}
+                  name={option}
+                  checked={selectedOptions.includes(option)}
+                  onChange={() => handleCheckboxChange(option)}
+                />
+                <label
+                  htmlFor={option}
+                  className="ml-3 text-md lg:text-lg text-black"
+                >
+                  {option}
+                </label>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
-
       <div
-        className="mt-[100px]  h-12 relative flex justify-center"
+        className="mt-[100px] h-12 relative flex justify-center"
         onClick={handleSubmitAlat}
+        style={{ cursor: "pointer" }}
       >
-        <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
+        <div className="w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
         <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">
           MASUK
         </div>
