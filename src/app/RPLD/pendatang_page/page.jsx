@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import yellowdots from "../../../components/images/yellowdots.png";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -23,7 +22,7 @@ export default function NonAnggotaPage() {
     };
 
 
-    const handleSubmitIn = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Nama:", nama);
         console.log("NIM:", nim);
@@ -42,32 +41,11 @@ export default function NonAnggotaPage() {
             })
         })
 
-        router.push('/RPLD/masuk_page')
-    };
-
-    const handleSubmitOut = async (e) => {
-        e.preventDefault();
-        console.log("Nama:", nama);
-        console.log("NIM:", nim);
-        const action = "OUT";
-        const time = new Date().toLocaleTimeString();
-        const date = new Date().toLocaleDateString();
-
-
-        const res = await fetch('/api/sheets', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                date, nama, nim, action, time
-            })
-        })
-
-        router.push('/RPLD/keluar_page')
+        router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}&date=${date}`)
     };
 
     return (
+
         <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
             <Image src={yellowdots} alt="Main Screen" objectFit="contain" />
             <div className="mt-[100px] md:mt-0 lg:mt-[100px] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
@@ -101,27 +79,15 @@ export default function NonAnggotaPage() {
             </div>
 
             <div
-                className="mt-[100px] h-12 relative flex justify-center "
-                // onClick={() => }
-                onClick={handleSubmitIn}
-                style={{ cursor: "pointer" }}
-            >
-                <div className="w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
-                <div className="Anggota top-[10px] absolute text-center text-white text-lg font-normal">
+                onClick={handleSubmit}
+                style={{ cursor: "pointer" }} className="mt-4  h-12 relative flex justify-center">
+                <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
+                <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">
                     MASUK
                 </div>
             </div>
 
-
-            <div
-                onClick={handleSubmitOut}
-                style={{ cursor: "pointer" }} className="mt-4  h-12 relative flex justify-center">
-                <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
-                <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">
-                    KELUAR
-                </div>
-            </div>
-
         </div>
+
     );
 }
