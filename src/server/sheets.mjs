@@ -31,6 +31,9 @@ export async function addRowToSheet(date, name, nim, time, action) {
 //Tools Sheet
 export async function addRowToSheet2(date, name, nim, tools) {
   const doc = new GoogleSpreadsheet(process.env.GOOGLE_LINK, jwt);
+  if(tools == "null"){
+    return; 
+  }
   await doc.loadInfo(); 
   const sheet = doc.sheetsByIndex[toolsIndex]; 
   await sheet.addRow({ Date:date, Nama: name, NIM: nim, Tools: tools });
