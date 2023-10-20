@@ -32,7 +32,10 @@ export default function NonAnggotaPage() {
       
         try {
           // First, make a GET request to the verification API
-          const verificationResponse = await fetch(`http://localhost:8080/verify/${nama}/${nim}`); // Adjust the URL accordingly
+          const encodedNIM = encodeURIComponent(nim);
+          const verificationResponse = await fetch(`http://localhost:8080/verify/${nama}/${encodedNIM}`);
+          
+          console.log(encodedNIM)
       
           if (verificationResponse.ok) {
             // The verification API returned a successful response

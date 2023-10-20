@@ -9,7 +9,7 @@ const SCOPES = [
 
 const jwt = new JWT({
   email: process.env.CLIENT_EMAIL,
-  key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+  key: process.env.PRIMARY_KEY.replace(/\\n/g, '\n'),
   scopes: SCOPES,
 });
 
