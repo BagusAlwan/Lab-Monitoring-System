@@ -1,10 +1,10 @@
 import express from 'express'; 
-import { registerMember, deleteMember, verifyUser } from './membersDB.mjs';
+import { registerMemberRPLD, deleteMemberRPLD, verifyUser } from './membersRPLD.mjs';
 
 const memberRouter = express.Router();
 
-memberRouter.post('/register', registerMember); 
-memberRouter.delete('/delete', deleteMember);
+memberRouter.post('/register', registerMemberRPLD); 
+memberRouter.delete('/delete', deleteMemberRPLD);
 memberRouter.get('/verify/:name/:NIM', verifyUser);
 
 

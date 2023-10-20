@@ -9,7 +9,7 @@ admin.initializeApp({
 
 const firestore = admin.firestore();
 
-export const registerMember = async (req, res, next) => {
+export const registerMemberRPLD = async (req, res, next) => {
     const { name, NIM } = req.body; 
     
     try {
@@ -27,7 +27,7 @@ export const registerMember = async (req, res, next) => {
     }
 }; 
 
-export const deleteMember = async (req, res, next) => {
+export const deleteMemberRPLD = async (req, res, next) => {
     const { name, NIM } = req.body;
 
     try {
