@@ -3,9 +3,9 @@ import { registerMemberRPLD, deleteMemberRPLD, verifyUser } from './membersRPLD.
 
 const memberRouter = express.Router();
 
-memberRouter.post('/register', registerMemberRPLD); 
-memberRouter.delete('/delete', deleteMemberRPLD);
-memberRouter.get('/verify/:name/:NIM', verifyUser);
+memberRouter.post('/register/RPLD', registerMemberRPLD); 
+memberRouter.delete('/delete/RPLD', deleteMemberRPLD);
+memberRouter.get('/verify/RPLD/:name/:NIM', verifyUser);
 
 
 export default memberRouter;

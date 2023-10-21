@@ -33,8 +33,8 @@ export default function NonAnggotaPage() {
         try {
           // First, make a GET request to the verification API
           const encodedNIM = encodeURIComponent(nim);
-          const verificationResponse = await fetch(`http://localhost:8080/verify/${nama}/${encodedNIM}`);
-          
+          const verificationResponse = await fetch(`http://localhost:8080/verify/RPLD/${nama}/${encodedNIM}`);
+
           console.log(encodedNIM)
       
           if (verificationResponse.ok) {
