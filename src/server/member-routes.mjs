@@ -1,8 +1,9 @@
 import express from 'express'; 
-import { registerMemberRPLD, deleteMemberRPLD, verifyRPLDUser } from './membersRPLD.mjs';
-import { registerMemberSC, deleteMemberSC, verifySCUser } from './membersSC.mjs';
-import { registerMemberSKJ, deleteMemberSKJ, verifySKJUser } from './membersSKJ.mjs';
-import { registerMemberAlgokom, deleteMemberAlgokom, verifyAlgokomUser } from './membersAlgokom.mjs';
+import { registerMemberRPLD, deleteMemberRPLD, verifyRPLDUser } from './members/membersRPLD.mjs';
+import { registerMemberSC, deleteMemberSC, verifySCUser } from './members/membersSC.mjs';
+import { registerMemberSKJ, deleteMemberSKJ, verifySKJUser } from './members/membersSKJ.mjs';
+import { registerMemberAlgokom, deleteMemberAlgokom, verifyAlgokomUser } from './members/membersAlgokom.mjs';
+import { registerMemberELINS, deleteMemberELINS, verifyELINSUser } from './members/membersELINS.mjs';
 
 const memberRouter = express.Router();
 
@@ -22,5 +23,8 @@ memberRouter.post('/register/Algokom', registerMemberAlgokom);
 memberRouter.delete('/delete/Algokom', deleteMemberAlgokom);
 memberRouter.get('/verify/Algokom/:name/:NIM', verifyAlgokomUser);
 
+memberRouter.post('/register/ELINS', registerMemberELINS); 
+memberRouter.delete('/delete/ELINS', deleteMemberELINS);
+memberRouter.get('/verify/ELINS/:name/:NIM', verifyELINSUser);
 
 export default memberRouter;

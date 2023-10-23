@@ -1,5 +1,5 @@
 import admin from "firebase-admin"; 
-import { Member } from "./member.mjs";
+import { Member } from "../model/member.mjs";
 
 const firestore = admin.firestore();
 

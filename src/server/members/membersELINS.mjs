@@ -1,22 +1,22 @@
 import admin from "firebase-admin"; 
-import { Member } from "./member.mjs";
+import { Member } from "../model/member.mjs";
 
 const firestore = admin.firestore();
 
-export const registerMemberSKJ = async (req, res, next) => {
+export const registerMemberELINS = async (req, res, next) => {
     const { name, NIM } = req.body; 
     
     try {
         const name_database = name.toLowerCase();
         const NIM_database = NIM.toLowerCase();
 
-        const existingUser = await firestore.collection('SKJ Members').where('NIM', '==', NIM_database).get();
+        const existingUser = await firestore.collection('ELINS Members').where('NIM', '==', NIM_database).get();
         
         if (!existingUser.empty) {return res.status(400).send( { message : 'member already registered'} )}
 
         const member = new Member(null, name_database, NIM_database);
 
-        await firestore.collection('SKJ Members').add(member.toJson());
+        await firestore.collection('ELINS Members').add(member.toJson());
 
         res.send(member.toJson());
 
@@ -25,7 +25,7 @@ export const registerMemberSKJ = async (req, res, next) => {
     }
 }; 
 
-export const deleteMemberSKJ = async (req, res, next) => {
+export const deleteMemberELINS = async (req, res, next) => {
     const { name, NIM } = req.body;
 
     try {
@@ -36,7 +36,7 @@ export const deleteMemberSKJ = async (req, res, next) => {
         const memberIDValidate = await getUserIdFromName(name_database);
 
         if (memberID === memberIDValidate) {
-            await firestore.collection('SKJ Members').doc(memberID).delete();
+            await firestore.collection('ELINS Members').doc(memberID).delete();
 
             res.send( { message : "delete success" } );
         } else {
@@ -48,7 +48,7 @@ export const deleteMemberSKJ = async (req, res, next) => {
     }
 };
 
-export const verifySKJUser = async (req, res, next) => {
+export const verifyELINSUser = async (req, res, next) => {
     const { name, NIM } = req.params; 
     try {
         const name_database = name.toLowerCase();
@@ -74,7 +74,7 @@ export const verifySKJUser = async (req, res, next) => {
 async function getUserIdFromNIM(NIM){
     try {
         // Fetch User based on registered NIM
-    const userQuery = await firestore.collection('SKJ Members').where('NIM', '==', NIM).get();
+    const userQuery = await firestore.collection('ELINS Members').where('NIM', '==', NIM).get();
     
     if (userQuery.empty) {
         throw new Error('User not found'); 
@@ -91,7 +91,7 @@ async function getUserIdFromNIM(NIM){
 async function getUserIdFromName(name){
     try {
         // Fetch User based on registered name
-    const userQuery = await firestore.collection('SKJ Members').where('name', '==', name).get();
+    const userQuery = await firestore.collection('ELINS Members').where('name', '==', name).get();
     
     if (userQuery.empty) {
         throw new Error('User not found'); 
