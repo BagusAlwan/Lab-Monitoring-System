@@ -51,7 +51,9 @@ export const verifyUser = async (req, res, next) => {
     const { name, NIM } = req.params; 
     try {
         const validateName = await getUserIdFromName(name);
-        const validateNIM = await getUserIdFromNIM(NIM); 
+        const validateNIM = await getUserIdFromNIM(NIM);
+        
+        
         let verified = false;
 
         if ( validateName === validateNIM ) {
@@ -88,7 +90,9 @@ async function getUserIdFromNIM(NIM){
 async function getUserIdFromName(name){
     try {
         // Fetch User based on registered name
-    const userQuery = await firestore.collection('RPLD Members').where('name', '==', name).get();
+    //const userQuery = await firestore.collection('RPLD Members').where('name', '==', name).get();
+
+    console.log()
     
     if (userQuery.empty) {
         throw new Error('User not found'); 
