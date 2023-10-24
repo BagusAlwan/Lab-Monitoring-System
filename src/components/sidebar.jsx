@@ -11,23 +11,28 @@ export default function Sidebar({ isOpen, auth }) {
       <div className="bg-[#283342] h-full w-auto flex flex-col justify-between items-stretch content-center">
         <ul className="content-center">
           <li className="py-5 text-center 2xl:text-xl hover:bg-[#009099]">
-            <a href="#" className="text-white">
-              SKJ
-            </a>
-          </li>
-          <li className="py-5 text-center 2xl:text-xl hover:bg-[#009099]">
-            <a href="#" className="text-white">
+            <a href="/admin_page/RPLD" className="text-white">
               RPLD
             </a>
           </li>
           <li className="py-5 text-center 2xl:text-xl hover:bg-[#009099]">
-            <a href="#" className="text-white">
-              MMI
+            <a href="/admin_page/ELINS" className="text-white">
+              ELINS
             </a>
           </li>
           <li className="py-5 text-center 2xl:text-xl hover:bg-[#009099]">
-            <a href="#" className="text-white">
-              SSA
+            <a href="/admin_page/SKJ" className="text-white">
+              SKJ
+            </a>
+          </li>
+          <li className="py-5 text-center 2xl:text-xl hover:bg-[#009099]">
+            <a href="/admin_page/ALGOKOM" className="text-white">
+              ALGOKOM
+            </a>
+          </li>
+          <li className="py-5 text-center 2xl:text-xl hover:bg-[#009099]">
+            <a href="/admin_page/SC" className="text-white">
+              SC
             </a>
           </li>
         </ul>

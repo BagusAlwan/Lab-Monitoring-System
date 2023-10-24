@@ -4,7 +4,7 @@ import AdminList from "./adminlist";
 import Sidebar from "./sidebar";
 import { useState } from "react";
 
-export default function Layout({ auth }) {
+export default function Layout({ auth, title }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleNav = () => {
@@ -26,7 +26,7 @@ export default function Layout({ auth }) {
 
       {/* Content */}
 
-      {showAdminGraph ? <AdminGraph isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} /> : <AdminList isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} />}
+      {showAdminGraph ? <AdminGraph title={title} isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} /> : <AdminList title={title} isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} />}
     </div>
   );
 }

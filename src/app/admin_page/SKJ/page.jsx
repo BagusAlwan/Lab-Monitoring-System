@@ -4,7 +4,7 @@ import Layout from "@/components/layout";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth"
 import { useRouter } from 'next/navigation';
-import { initFirebase } from "../firebase/firebase";
+import { initFirebase } from "../../firebase/firebase";
 
 
 
@@ -29,7 +29,7 @@ export default function AdminPage() {
 
     return (
         <div>
-            <Layout auth={auth} />
+            <Layout title={'Lab Sistem Komputer dan Jaringan'} auth={auth} />
         </div>
     )
 }

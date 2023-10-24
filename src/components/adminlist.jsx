@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 
-export default function AdminList({ isOpen, toggleNav, toggleContent }) {
+export default function AdminList({ isOpen, toggleNav, toggleContent, title }) {
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
@@ -25,7 +25,7 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
     <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
       <div className=" bg-white h-[150px] md:h-24 p-8 pt-[50px] md:flex md:flex-row grid grid-rows-2 gap-y-12 items-center justify-between ">
         <h1 className="2xl:text-4xl xl:text-3xl lg:text-2xl text-xl font-extrabold text-black">
-          Lab Rekayasa Perangkat Lunak dan Data
+          {title}
         </h1>
         <div className="flex flex-row">
           <Image src={dot} alt="dot" width={20} height={20} className="mr-3" />
