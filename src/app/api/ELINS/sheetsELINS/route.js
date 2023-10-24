@@ -1,4 +1,4 @@
-import { addRowToSheet } from "@/server/sheets.mjs";
+import { addRowToSheet } from "@/server/sheets/sheetsELINS.mjs";
 import { NextResponse } from "next/server";
 
 export async function POST(request){
