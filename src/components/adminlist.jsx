@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 
-export default function AdminList({ isOpen, toggleNav, toggleContent, title }) {
+export default function AdminList({ isOpen, toggleNav, toggleContent, title, iframetoolslist, iframetoolsdash }) {
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
@@ -78,12 +78,12 @@ export default function AdminList({ isOpen, toggleNav, toggleContent, title }) {
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
           <iframe
             id="myIframe"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=232475588&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframetoolslist}
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start   "
           ></iframe>
           <iframe
             id="myIframe"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=1908990259&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframetoolsdash}
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start "
           ></iframe>
         </div>
@@ -91,11 +91,11 @@ export default function AdminList({ isOpen, toggleNav, toggleContent, title }) {
         {/* sm and below graph */}
         <div className=" mt-[47px] sm:hidden grid grid-rows-2 gap-8 pt-8">
           <iframe
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=232475588&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframetoolslist}
             className="Rectangle h-[300px] rounded border border-gray-800"
           ></iframe>
           <iframe
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=1908990259&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframetoolsdash}
             className="Rectangle h-[300px] rounded border border-gray-800"
           ></iframe>
         </div>

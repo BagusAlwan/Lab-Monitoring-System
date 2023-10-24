@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 
-export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title }) {
+export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title, iframevisitorlist, iframevisitordash }) {
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
@@ -79,12 +79,12 @@ export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title })
           {/* <div className="Rectangle bg-sky-300 rounded border border-gray-800" /> */}
           <iframe
             id="myIframe"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=2112610032&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframevisitorlist}
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start "
           ></iframe>
           <iframe
             id="myIframe"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=410791536&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframevisitordash}
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start "
           ></iframe>
         </div>
@@ -94,12 +94,12 @@ export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title })
           {/* <div className="Rectangle h-[300px] bg-sky-300 rounded border border-gray-800" /> */}
           <iframe
             id="myIframe"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=2112610032&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframevisitorlist}
             className="sm:hidden grid grid-rows-2 Rectangle h-[300px] rounded border border-gray-800"
           ></iframe>
           <iframe
             id="myIframe"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=410791536&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframevisitordash}
             className="sm:hidden grid grid-rows-2 Rectangle h-[300px] rounded border border-gray-800"
           ></iframe>
         </div>
