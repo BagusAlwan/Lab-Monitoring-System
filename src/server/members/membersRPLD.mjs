@@ -1,6 +1,6 @@
 import admin from "firebase-admin"; 
-import serviceAccount from "./serviceAccount.json" assert {type : 'json'};
-import { Member } from "./member.mjs";
+import serviceAccount from "../serviceAccount.json" assert {type : 'json'};
+import { Member } from "../model/member.mjs";
 
 // Initialize Firebase Admin
 admin.initializeApp({
@@ -13,10 +13,14 @@ export const registerMemberRPLD = async (req, res, next) => {
     const { name, NIM } = req.body; 
     
     try {
-        const existingUser = await firestore.collection('users').where('NIM', '==', NIM).get();
+        const name_database = name.toLowerCase();
+        const NIM_database = NIM.toLowerCase();
+
+        const existingUser = await firestore.collection('RPLD Members').where('NIM', '==', NIM_database).get();
+        
         if (!existingUser.empty) {return res.status(400).send( { message : 'member already registered'} )}
 
-        const member = new Member(null, name, NIM);
+        const member = new Member(null, name_database, NIM_database);
 
         await firestore.collection('RPLD Members').add(member.toJson());
 
@@ -31,31 +35,34 @@ export const deleteMemberRPLD = async (req, res, next) => {
     const { name, NIM } = req.body;
 
     try {
-    const memberID = await getUserIdFromNIM(NIM);
-    const memberIDValidate = await getUserIdFromName(name);
+        const name_database = name.toLowerCase(); 
+        const NIM_database = NIM.toLowerCase(); 
 
-    if (memberID === memberIDValidate) {
-        await firestore.collection('RPLD Members').doc(memberID).delete();
+        const memberID = await getUserIdFromNIM(NIM_database);
+        const memberIDValidate = await getUserIdFromName(name_database);
 
-        res.send( { message : "delete success" } );
-    } else {
-        res.status(404).send( { message : "invalid user" } );
-    }
+        if (memberID === memberIDValidate) {
+            await firestore.collection('RPLD Members').doc(memberID).delete();
+
+            res.send( { message : "delete success" } );
+        } else {
+            res.status(404).send( { message : "invalid user" } );
+        }
 
     } catch (err) {
         res.status(400).send( { message : err.message + " - delete error" } );
     }
 };
 
-export const verifyUser = async (req, res, next) => {
+export const verifyRPLDUser = async (req, res, next) => {
     const { name, NIM } = req.params; 
-    try {
-        const validateName = await getUserIdFromName(name);
-        const validateNIM = await getUserIdFromNIM(NIM);
-        
-        
+    try {        
+        const name_database = name.toLowerCase();
+        const NIM_database = NIM.toLowerCase();
+        const validateName = await getUserIdFromName(name_database);
+        const validateNIM = await getUserIdFromNIM(NIM_database); 
         let verified = false;
-
+        
         if ( validateName === validateNIM ) {
             const response = {
                 verified : true

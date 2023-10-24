@@ -23,7 +23,6 @@ export default function NonAnggotaPage() {
     setNim(newValue);
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Nama:", nama);

@@ -12,7 +12,7 @@ export default function AlatPage() {
   const nim = searchParams.get("nim");
   const date = searchParams.get("date");
 
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("Alat Pribadi");
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
   };
@@ -36,6 +36,8 @@ export default function AlatPage() {
         selectedOption,
       }),
     });
+
+    console.log(selectedOption)
 
     router.push("/RPLD/masuk_page");
   };
