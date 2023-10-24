@@ -24,7 +24,7 @@ export default function AlatPage() {
     }
     console.log("Nama:", name);
     console.log("NIM:", nim);
-    const res = await fetch("/api/RPLD/alatSheet", {
+    const res = await fetch("/api/SC/alatSheet", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function AlatPage() {
 
     console.log(selectedOption)
 
-    router.push("/RPLD/masuk_page");
+    router.push("/SC/masuk_page");
   };
 
   return (
@@ -55,9 +55,12 @@ export default function AlatPage() {
           value={selectedOption} // Set the selected value based on the state
         >
           <option value="Alat Pribadi">Alat Pribadi</option>
-          <option value="Komputer HPC">Komputer HPC</option>
-          <option value="Layar LCD Chenghong">Layar LCD Chenghong</option>
-          <option value="Coffee Maker">Coffee Maker</option>
+          <option value="Layar Monitor">Layar Monitor</option>
+          <option value="Lcd layar lebar">Lcd layar lebar</option>
+          <option value="Pc komputer">Pc komputer</option>
+          <option value="NAS">NAS</option>
+          <option value="Mac mini ">Mac mini</option>
+          <option value="Printer">Printer</option>
         </select>
       </div>
 

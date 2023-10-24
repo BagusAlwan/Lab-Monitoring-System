@@ -32,8 +32,9 @@ export default function NonAnggotaPage() {
     const date = new Date().toLocaleDateString();
 
     try {
+      // First, make a GET request to the verification API
       const encodedNIM = encodeURIComponent(nim)
-      const verificationResponse = await fetch(`http://localhost:8080/verify/RPLD/${nama}/${encodedNIM}`); // Adjust the URL accordingly
+      const verificationResponse = await fetch(`http://localhost:8080/verify/ELINS/${nama}/${encodedNIM}`); // Adjust the URL accordingly
 
       console.log(encodedNIM)
 
@@ -43,7 +44,7 @@ export default function NonAnggotaPage() {
 
         if (verificationData.verified) {
           // The verification was successful, now make the POST request
-          const postResponse = await fetch('/api/RPLD/sheets', {
+          const postResponse = await fetch('/api/ELINS/sheetsELINS', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -55,7 +56,7 @@ export default function NonAnggotaPage() {
 
           if (postResponse.ok) {
             // The POST request was successful, you can now navigate to the next page
-            router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}&date=${date}`);
+            router.push(`/ELINS/alat_page?name=${nama}&nim=${nim}&date=${date}`);
           } else {
             console.error('Failed to make POST request:', postResponse.status);
             alert("Failed to make POST request", postResponse.status);
