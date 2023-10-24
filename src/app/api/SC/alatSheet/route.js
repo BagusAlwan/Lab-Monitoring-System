@@ -1,9 +1,9 @@
-import { addRowToSheet2 } from "@/server/sheets.mjs";
+import { addRowToSheet2 } from "@/server/sheets/sheetsSC.mjs";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
   const data = await request.json()
-  const remoteWebsiteURL = "http://192.168.88.11/?open"
+  const remoteWebsiteURL = "http://10.6.4.100/?open"
   console.log(data)
   const { date, name, nim, selectedOption } = data
   await addRowToSheet2(date, name, nim, selectedOption)
