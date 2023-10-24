@@ -33,7 +33,7 @@ export default function NonAnggotaPage() {
 
     try {
       const encodedNIM = encodeURIComponent(nim)
-      const verificationResponse = await fetch(`http://localhost:8080/verify/SKJ/${nama}/${encodedNIM}`); // Adjust the URL accordingly
+      const verificationResponse = await fetch(`http://10.6.43.100:8080/verify/SKJ/${nama}/${encodedNIM}`); // Adjust the URL accordingly
 
       console.log(encodedNIM)
 
@@ -43,7 +43,7 @@ export default function NonAnggotaPage() {
 
         if (verificationData.verified) {
           // The verification was successful, now make the POST request
-          const postResponse = await fetch('/api/SKJ/sheets', {
+          const postResponse = await fetch('/api/SKJ/sheetsSKJ', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

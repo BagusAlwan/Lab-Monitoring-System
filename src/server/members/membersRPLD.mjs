@@ -97,7 +97,7 @@ async function getUserIdFromNIM(NIM){
 async function getUserIdFromName(name){
     try {
         // Fetch User based on registered name
-    //const userQuery = await firestore.collection('RPLD Members').where('name', '==', name).get();
+    const userQuery = await firestore.collection('RPLD Members').where('name', '==', name).get();
 
     console.log()
     

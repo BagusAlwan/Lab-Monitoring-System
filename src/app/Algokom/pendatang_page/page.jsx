@@ -33,7 +33,7 @@ export default function NonAnggotaPage() {
 
     try {
       const encodedNIM = encodeURIComponent(nim)
-      const verificationResponse = await fetch(`http://localhost:8080/verify/Algokom/${nama}/${encodedNIM}`); // Adjust the URL accordingly
+      const verificationResponse = await fetch(`http://10.6.43.100:8080/verify/Algokom/${nama}/${encodedNIM}`); // Adjust the URL accordingly
 
       console.log(encodedNIM)
 
