@@ -20,6 +20,7 @@ model RPLDmember {
   id     Int      @id @default(autoincrement())
   name   String
   nim    String
+  lab    String
   timeIn DateTime
   action String
 }
@@ -30,4 +31,11 @@ model RPLDalat {
   nim  String
   time DateTime
   alat String
+}
+
+model RPLDdata {
+  id   Int    @id @default(autoincrement())
+  name String
+  nim  String
+  lab  String
 }
