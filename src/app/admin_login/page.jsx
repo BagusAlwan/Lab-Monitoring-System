@@ -31,9 +31,14 @@ export default function DataPage() {
         return <div>LOADING...</div>
     }
 
+    
+
+
     if (user) {
-        router.push("/admin_page");
+        router.push("/admin_page/RPLD")
+        
     }
+    
 
     return (
         <div className="p-[18px] bg-white h-screen w-screen overflow-auto">

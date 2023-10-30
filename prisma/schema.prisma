@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model adminUser {
+  id       Int    @id @default(autoincrement())
+  name     String
+  password String
+}
+
+model RPLDmember {
+  id     Int      @id @default(autoincrement())
+  name   String
+  nim    String
+  lab    String
+  timeIn DateTime
+  action String
+}
+
+model RPLDalat {
+  id   Int      @id @default(autoincrement())
+  name String
+  nim  String
+  time DateTime
+  alat String
+}
+
+model RPLDdata {
+  id   Int    @id @default(autoincrement())
+  name String
+  nim  String
+  lab  String
+}

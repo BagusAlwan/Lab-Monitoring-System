@@ -12,15 +12,9 @@ export default function AlatPage() {
   const nim = searchParams.get("nim");
   const date = searchParams.get("date");
 
-
-  const [selectedOptions, setSelectedOptions] = useState([]);
-
-  const handleCheckboxChange = (option) => {
-    if (selectedOptions.includes(option)) {
-      setSelectedOptions(selectedOptions.filter((item) => item !== option));
-    } else {
-      setSelectedOptions([...selectedOptions, option]);
-    }
+  const [selectedOption, setSelectedOption] = useState("Alat Pribadi");
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
   };
 
   const handleSubmitAlat = async (e) => {
@@ -30,12 +24,12 @@ export default function AlatPage() {
     }
 
     e.preventDefault();
-    if (selectedOptions === "null") {
+    if (selectedOption === "null") {
       return;
     }
     console.log("Nama:", name);
     console.log("NIM:", nim);
-    const res = await fetch("/api/alatSheet", {
+    const res = await fetch("/api/RPLD/alatSheet", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +42,7 @@ export default function AlatPage() {
       }),
     });
 
-    console.log("Selected Options:", selectedOptions);
+    console.log(selectedOption)
 
     router.push("/RPLD/masuk_page");
   };
@@ -67,27 +61,16 @@ export default function AlatPage() {
         Pilih alat yg digunakan:
       </div>
       <div className="pt-[75px] flex justify-center items-center">
-        <ul>
-          {alatOptions.map((option) => (
-            <li key={option} className="mb-4">
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id={option}
-                  name={option}
-                  checked={selectedOptions.includes(option)}
-                  onChange={() => handleCheckboxChange(option)}
-                />
-                <label
-                  htmlFor={option}
-                  className="ml-3 text-md lg:text-lg text-black"
-                >
-                  {option}
-                </label>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <select
+          className="w-72 border border-black bg-white text-black text-sm rounded block focus:ring-teal-600 focus:border-teal-600 p-2.5"
+          onChange={handleSelectChange} // Call handleSelectChange on select change
+          value={selectedOption} // Set the selected value based on the state
+        >
+          <option value="Alat Pribadi">Alat Pribadi</option>
+          <option value="Komputer HPC">Komputer HPC</option>
+          <option value="Layar LCD Chenghong">Layar LCD Chenghong</option>
+          <option value="Coffee Maker">Coffee Maker</option>
+        </select>
       </div>
       <div
         className="mt-[100px] h-12 relative flex justify-center"

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 
-export default function AdminList({ isOpen, toggleNav, toggleContent }) {
+export default function AdminList({ isOpen, toggleNav, toggleContent, title, iframetoolslist, iframetoolsdash }) {
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
@@ -25,7 +25,7 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
     <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
       <div className=" bg-white h-[150px] md:h-24 p-8 pt-[50px] md:flex md:flex-row grid grid-rows-2 gap-y-12 items-center justify-between ">
         <h1 className="2xl:text-4xl xl:text-3xl lg:text-2xl text-xl font-extrabold text-black">
-          Lab Rekayasa Perangkat Lunak dan Data
+          {title}
         </h1>
         <div className="flex flex-row">
           <Image src={dot} alt="dot" width={20} height={20} className="mr-3" />
@@ -78,12 +78,12 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
           <iframe
             id="myIframe"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=232475588&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframetoolslist}
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start   "
           ></iframe>
           <iframe
             id="myIframe"
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=1908990259&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframetoolsdash}
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start "
           ></iframe>
         </div>
@@ -91,11 +91,11 @@ export default function AdminList({ isOpen, toggleNav, toggleContent }) {
         {/* sm and below graph */}
         <div className=" mt-[47px] sm:hidden grid grid-rows-2 gap-8 pt-8">
           <iframe
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=232475588&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframetoolslist}
             className="Rectangle h-[300px] rounded border border-gray-800"
           ></iframe>
           <iframe
-            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRRBwzV_bm-mFwB0cBYqXziHJeQwYkwr8AsDAemSxZEbuRoa3aecoKbbKOoqjFVZ0GWfL-yco9GZABl/pubhtml?gid=1908990259&amp;single=true&amp;widget=true&amp;headers=false"
+            src={iframetoolsdash}
             className="Rectangle h-[300px] rounded border border-gray-800"
           ></iframe>
         </div>
