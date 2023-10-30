@@ -17,19 +17,19 @@ model adminUser {
 }
 
 model RPLDmember {
-  id     Int      @id @default(autoincrement())
-  name   String
-  nim    String
-  lab    String
-  timeIn DateTime
-  action String
+  id   Int      @id @default(autoincrement())
+  name String
+  nim  String
+  lab  String
+  time DateTime @default(now())
 }
 
 model RPLDalat {
   id   Int      @id @default(autoincrement())
   name String
   nim  String
-  time DateTime
+  lab  String
+  time DateTime @default(now())
   alat String
 }
 
