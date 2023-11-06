@@ -32,6 +32,7 @@ export default function AdminPage() {
         iframetoolslist="https://docs.google.com/spreadsheets/d/e/2PACX-1vQoX7l1YvX3bWFBif5AGVysfItjS8VLwtdesfs9kdvB56P6rIO5gnPzulCvsQJyGTBsjZFVTGbCB_tD/pubhtml?gid=922969363&amp;single=true&amp;widget=true&amp;headers=false"
         iframetoolsdash="https://docs.google.com/spreadsheets/d/e/2PACX-1vQoX7l1YvX3bWFBif5AGVysfItjS8VLwtdesfs9kdvB56P6rIO5gnPzulCvsQJyGTBsjZFVTGbCB_tD/pubhtml?gid=1583627477&amp;single=true&amp;widget=true&amp;headers=false"
         auth={auth}
+        lab='ELINS'
       />
     </div>
   );

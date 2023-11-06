@@ -5,20 +5,51 @@ import DateNow from "../components/date";
 import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
+import VisitorChart from "./chart";
 
-export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title, iframevisitorlist, iframevisitordash }) {
+export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title, iframevisitorlist, iframevisitordash, lab }) {
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
 
-  useEffect(() => {
-    const iframe = document.getElementById("myIframe");
-    function reloadIframe() {
-      iframe.src = iframe.src;
+  // useEffect(() => {
+  //   const iframe = document.getElementById("myIframe");
+  //   function reloadIframe() {
+  //     iframe.src = iframe.src;
+  //   }
+  //   const intervalId = setInterval(reloadIframe, 30000);
+  //   return () => clearInterval(intervalId);
+  // }, []);
+  const [visitorData, setVisitorData] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/member/group/${lab}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setVisitorData(data);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
-    const intervalId = setInterval(reloadIframe, 30000);
-    return () => clearInterval(intervalId);
+  };
+
+  useEffect(() => {
+    fetchData(); // Fetch data when the component mounts
+
+    const intervalId = setInterval(fetchData, 5000); // Fetch data every 5 seconds
+
+    return () => clearInterval(intervalId); // Clean up the interval on unmount
   }, []);
+
 
   return (
     <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
@@ -38,9 +69,8 @@ export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title, i
       <div
         type="button"
         onClick={callParentFunction}
-        className={` justify-self-start self-center z-20 md:hidden ${
-          !isOpen ? "absolute w-[10%] " : " absolute  "
-        }`}
+        className={` justify-self-start self-center z-20 md:hidden ${!isOpen ? "absolute w-[10%] " : " absolute  "
+          }`}
       >
         <Image
           alt="navbararrow"
@@ -77,7 +107,7 @@ export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title, i
         {/* sm and above graph */}
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
           {/* <div className="Rectangle bg-sky-300 rounded border border-gray-800" /> */}
-          <iframe
+          {/* <iframe
             id="myIframe"
             src={iframevisitorlist}
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start "
@@ -86,7 +116,44 @@ export default function AdminGrapgh({ isOpen, toggleNav, toggleContent, title, i
             id="myIframe"
             src={iframevisitordash}
             className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start "
-          ></iframe>
+          ></iframe> */}
+          <div>
+
+            <VisitorChart chartType="column" data={visitorData} timeRange="Daily" />
+            <VisitorChart
+              chartType="column"
+              data={visitorData}
+              timeRange="Weekly"
+            />
+            <VisitorChart chartType="line" data={visitorData} timeRange="Monthly" />
+          </div>
+          <div>
+            <table
+              className="min-w-full table-auto border border-gray-300 text-center text-black space-y-4"
+              border="1"
+            >
+              <thead>
+                <tr>
+
+                  <th className="border-y">Name</th>
+                  <th className="border-y">NIM</th>
+
+                  <th className="border-y">Time In</th>
+                </tr>
+              </thead>
+              <tbody>
+                {visitorData.map((visitor) => (
+                  <tr key={visitor.id}>
+                    {/* <td  >{visitor.id}</td> */}
+                    <td className="py-3">{visitor.name}</td>
+                    <td>{visitor.nim}</td>
+                    {/* <td>{visitor.lab}</td> */}
+                    <td>{visitor.time}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* sm and below graph */}
