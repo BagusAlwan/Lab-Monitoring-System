@@ -1,4 +1,6 @@
-import React from "react";
+'use client';
+
+import React, { useEffect, useState } from "react";
 import VisitorChart from "../../components/chart.jsx";
 import { ht } from "date-fns/locale";
 
@@ -115,19 +117,46 @@ import { ht } from "date-fns/locale";
 //     lab: "Lab B",
 //     timeIn: "2024-11-25T11:40:00",
 //   },
-  
-  
+
 //   // Add more visitor data for different dates
 // ];
 
-const visitorData = await fetch('http://localhost:3000/api/member/group/RPLD', {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
 function MyPage() {
+  const { visitorData, setVisitorData } = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const visitorData = await fetch(
+        "http://localhost:8080/api/member/group/RPLD",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setVisitorData(data);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch data immediately when the component mounts
+    fetchData();
+
+    // Set up an interval to fetch data every 5 seconds
+    const intervalId = setInterval(fetchData, 5000);
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start">
       <div>
@@ -141,7 +170,31 @@ function MyPage() {
         <VisitorChart chartType="line" data={visitorData} timeRange="Monthly" />
       </div>
       <div>
-        
+        <table
+          className="min-w-full table-auto border border-gray-300 text-center space-y-4"
+          border="1"
+        >
+          <thead>
+            <tr>
+              {/* <th className="border-y">ID</th> */}
+              <th className="border-y">Name</th>
+              <th className="border-y">NIM</th>
+              {/* <th className="border-y">Lab</th> */}
+              <th className="border-y">Time In</th>
+            </tr>
+          </thead>
+          <tbody>
+            {visitorData.map((visitor) => (
+              <tr key={visitor.id}>
+                {/* <td  >{visitor.id}</td> */}
+                <td className="py-3">{visitor.name}</td>
+                <td>{visitor.nim}</td>
+                {/* <td>{visitor.lab}</td> */}
+                <td>{visitor.time}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
