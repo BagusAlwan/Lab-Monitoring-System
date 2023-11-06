@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import VisitorChart from "../../components/chart.jsx";
+import VisitorChart from "../../components/visitorchart.jsx";
 import { ht } from "date-fns/locale";
+import ToolsChart from "../../components/toolschart.jsx";
 
 // const visitorData = [
 //   {
@@ -126,7 +127,7 @@ function MyPage() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/member/group/RPLD", {
+      const response = await fetch("http://localhost:8080/api/alat/group/RPLD", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -155,16 +156,6 @@ function MyPage() {
   return (
     <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start">
       <div>
-        <h1>My Data Visualization Page</h1>
-        <VisitorChart chartType="column" data={visitorData} timeRange="Daily" />
-        <VisitorChart
-          chartType="column"
-          data={visitorData}
-          timeRange="Weekly"
-        />
-        <VisitorChart chartType="line" data={visitorData} timeRange="Monthly" />
-      </div>
-      <div>
         <table
           className="min-w-full table-auto border border-gray-300 text-center space-y-4"
           border="1"
@@ -176,6 +167,7 @@ function MyPage() {
               <th className="border-y">NIM</th>
               {/* <th className="border-y">Lab</th> */}
               <th className="border-y">Time In</th>
+              <th className="border-y">Alat</th>
             </tr>
           </thead>
           <tbody>
@@ -186,11 +178,18 @@ function MyPage() {
                 <td>{visitor.nim}</td>
                 {/* <td>{visitor.lab}</td> */}
                 <td>{visitor.time}</td>
+                <td>{visitor.alat}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <div>
+        <h1>My Data Visualization Page</h1>
+        <ToolsChart chartType="column" data={visitorData} />
+        
+      </div>
+      
     </div>
   );
 }
