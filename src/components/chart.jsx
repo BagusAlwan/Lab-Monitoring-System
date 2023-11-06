@@ -4,7 +4,7 @@ import React from "react";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 
-function VisitorChart({ data, chartType, timeRange }) {
+function adVisitorChart({ data, chartType, timeRange }) {
   let options;
 
   if (timeRange === "Daily") {
@@ -104,7 +104,7 @@ function calculateWeekData(data) {
   const weeklyData = Array(7).fill(0);
 
   data.forEach((entry) => {
-    const date = new Date(entry.timeIn);
+    const date = new Date(entry.time);
     const dayOfWeek = date.getUTCDay(); // 0 for Sunday, 1 for Monday, etc.
     weeklyData[dayOfWeek]++;
   });
@@ -120,7 +120,7 @@ function calculateMonthlyData(data) {
   const monthlyData = [];
 
   data.forEach((entry) => {
-    const date = new Date(entry.timeIn);
+    const date = new Date(entry.time);
     const year = date.getUTCFullYear();
     const month = date.getUTCMonth();
     //const weekNumber = getWeekNumber(date);
@@ -180,7 +180,7 @@ function calculateWeeklyData(data) {
   const weeklyData = Array(4).fill(0);
 
   data.forEach((entry) => {
-    const date = new Date(entry.timeIn);
+    const date = new Date(entry.time);
     if (date >= firstDay && date.getUTCMonth() === currentMonth) {
       // Only consider entries from the current month
       const weekNumber = Math.floor((date.getUTCDate() + firstDayOfWeek) / daysInWeek) + 1;
