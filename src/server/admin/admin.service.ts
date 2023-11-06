@@ -16,10 +16,10 @@ export const listAdmins = async (): Promise<Admin[]> => {
     });
 };
 
-export const getAdmin = async (id: number): Promise<Admin | null> => {
+export const getAdmin = async (name: string): Promise<Admin | null> => {
     return db.adminUser.findUnique({
         where: {
-            id,
+            name,
         },
         select: {
             id: true,
