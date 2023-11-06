@@ -122,19 +122,17 @@ import { ht } from "date-fns/locale";
 // ];
 
 function MyPage() {
-  const { visitorData, setVisitorData } = useState([]);
+  const [visitorData, setVisitorData] = useState([]);
 
   const fetchData = async () => {
     try {
-      const visitorData = await fetch(
-        "http://localhost:8080/api/member/group/RPLD",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://localhost:8080/api/member/group/RPLD", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       if (response.ok) {
         const data = await response.json();
         setVisitorData(data);
@@ -147,14 +145,11 @@ function MyPage() {
   };
 
   useEffect(() => {
-    // Fetch data immediately when the component mounts
-    fetchData();
+    fetchData(); // Fetch data when the component mounts
 
-    // Set up an interval to fetch data every 5 seconds
-    const intervalId = setInterval(fetchData, 5000);
+    const intervalId = setInterval(fetchData, 5000); // Fetch data every 5 seconds
 
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId); // Clean up the interval on unmount
   }, []);
 
   return (
