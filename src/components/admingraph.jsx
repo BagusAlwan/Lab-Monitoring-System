@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 import VisitorChart from "./visitorchart";
+import { useRouter } from 'next/navigation';
 
 export default function AdminGrapgh({
   isOpen,
@@ -17,6 +18,17 @@ export default function AdminGrapgh({
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
+
+  const router = useRouter();
+
+  const handleButtonClick = () => {
+    if (typeof lab === 'string') {
+      router.push(`/admin_page/add?currentlab=${lab}`);
+    } else {
+      console.error('Lab is not a valid string:', lab);
+      // Handle the error or provide a default value as needed
+    }
+  }
 
   const [visitorData, setVisitorData] = useState([]);
   const fetchData = async () => {
@@ -85,7 +97,6 @@ export default function AdminGrapgh({
         <div className="flex flex-row  ">
           <div className="flex flex-col">
             <div className="text-gray-800 mb-1 2xl:mb-5 text-base lg:text-xl 2xl:text-2xl 2xl:font-medium font-normal"></div>
-            {/* <DatePicker.RangePicker className="w-[200px] md:w-[500px] 2xl:p-3 2xl:w-[900px] 2xl:mt-3  " /> */}
             <div className="w-[200px] md:w-[500px] 2xl:p-3 2xl:w-[900px] text-black font-bold lg:mt-4 2xl:mt-6 text-lg xl:text-2xl ">
               Detail Pengunjung
             </div>
@@ -103,20 +114,25 @@ export default function AdminGrapgh({
             </div>
           </div>
         </div>
+        <button 
+        onClick={handleButtonClick}
+        className="w-full mt-8 h-[38px] bg-teal-600 rounded-md ">
+          <div>Tambah Member Lab</div>
+        </button>
 
         {/* sm and above graph */}
-        <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
+        <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[20px]  ">
           <div>
             <table
-              className="min-w-full table-auto border border-gray-300 text-center text-black space-y-4"
+              className="min-w-full table-auto border border-black text-center text-black space-y-4"
               border="1"
             >
               <thead>
                 <tr>
-                  <th className="border-y">Name</th>
-                  <th className="border-y">NIM</th>
+                  <th className="border-y border-black">Name</th>
+                  <th className="border-y border-black">NIM</th>
 
-                  <th className="border-y">Time In</th>
+                  <th className="border-y border-black">Time In</th>
                 </tr>
               </thead>
               <tbody>
@@ -155,7 +171,7 @@ export default function AdminGrapgh({
         <div className="w-[350px] sm:hidden grid grid-rows-2 gap-8 pt-8">
           <div>
             <table
-              className="w-[350px] table-auto border border-gray-800 text-center text-black"
+              className="w-[350px] table-auto border border-black text-center text-black"
               border="2"
             >
               <thead>

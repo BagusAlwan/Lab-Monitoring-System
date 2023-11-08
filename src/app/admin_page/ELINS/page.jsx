@@ -27,12 +27,8 @@ export default function AdminPage() {
     <div>
       <Layout
         title={"Lab Elektronika dan Instrumentasi"}
-        iframevisitorlist="https://docs.google.com/spreadsheets/d/e/2PACX-1vQoX7l1YvX3bWFBif5AGVysfItjS8VLwtdesfs9kdvB56P6rIO5gnPzulCvsQJyGTBsjZFVTGbCB_tD/pubhtml?gid=241214832&amp;single=true&amp;widget=true&amp;headers=false"
-        iframevisitordash="https://docs.google.com/spreadsheets/d/e/2PACX-1vQoX7l1YvX3bWFBif5AGVysfItjS8VLwtdesfs9kdvB56P6rIO5gnPzulCvsQJyGTBsjZFVTGbCB_tD/pubhtml?gid=1545419633&amp;single=true&amp;widget=true&amp;headers=false"
-        iframetoolslist="https://docs.google.com/spreadsheets/d/e/2PACX-1vQoX7l1YvX3bWFBif5AGVysfItjS8VLwtdesfs9kdvB56P6rIO5gnPzulCvsQJyGTBsjZFVTGbCB_tD/pubhtml?gid=922969363&amp;single=true&amp;widget=true&amp;headers=false"
-        iframetoolsdash="https://docs.google.com/spreadsheets/d/e/2PACX-1vQoX7l1YvX3bWFBif5AGVysfItjS8VLwtdesfs9kdvB56P6rIO5gnPzulCvsQJyGTBsjZFVTGbCB_tD/pubhtml?gid=1583627477&amp;single=true&amp;widget=true&amp;headers=false"
         auth={auth}
-        lab='ELINS'
+        lab="ELINS"
       />
     </div>
   );

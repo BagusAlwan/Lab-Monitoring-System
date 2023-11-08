@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 import ToolsChart from "./toolschart";
+import { useRouter } from 'next/navigation';
 
 export default function AdminList({
   isOpen,
@@ -113,6 +114,9 @@ export default function AdminList({
             </div>
           </div>
         </div>
+        <button className="w-full mt-8 h-[38px] bg-teal-800 rounded-md ">
+          <div>Tambah Alat Lab</div>
+        </button>
 
         {/* sm and above graph */}
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">

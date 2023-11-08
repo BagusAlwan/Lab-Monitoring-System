@@ -25,15 +25,7 @@ export default function AdminPage() {
 
   return (
     <div>
-      <Layout
-        title={"Lab Algoritma dan Komputasi"}
-        iframevisitorlist="https://docs.google.com/spreadsheets/d/e/2PACX-1vRnAHJLyFMieZIQC0IGvsiN0RzOOfBCG94jG1uOfJ17KAEpR9Vqv7owS0Z1m_AdjQ3Sk_qtTtfhKnaV/pubhtml?gid=241214832&amp;single=true&amp;widget=true&amp;headers=false"
-        iframevisitordash="https://docs.google.com/spreadsheets/d/e/2PACX-1vRnAHJLyFMieZIQC0IGvsiN0RzOOfBCG94jG1uOfJ17KAEpR9Vqv7owS0Z1m_AdjQ3Sk_qtTtfhKnaV/pubhtml?gid=1545419633&amp;single=true&amp;widget=true&amp;headers=false"
-        iframetoolslist="https://docs.google.com/spreadsheets/d/e/2PACX-1vRnAHJLyFMieZIQC0IGvsiN0RzOOfBCG94jG1uOfJ17KAEpR9Vqv7owS0Z1m_AdjQ3Sk_qtTtfhKnaV/pubhtml?gid=922969363&amp;single=true&amp;widget=true&amp;headers=false"
-        iframetoolsdash="https://docs.google.com/spreadsheets/d/e/2PACX-1vRnAHJLyFMieZIQC0IGvsiN0RzOOfBCG94jG1uOfJ17KAEpR9Vqv7owS0Z1m_AdjQ3Sk_qtTtfhKnaV/pubhtml?gid=1583627477&amp;single=true&amp;widget=true&amp;headers=false"
-        auth={auth}
-        lab='ALGOKOM'
-      />
+      <Layout title={"Lab Algoritma dan Komputasi"} auth={auth} lab="ALGOKOM" />
     </div>
   );
 }
