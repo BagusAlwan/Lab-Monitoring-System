@@ -27,43 +27,45 @@ export default function NonAnggotaPage() {
     e.preventDefault();
     console.log("Nama:", nama);
     console.log("NIM:", nim);
-    const action = "IN";
-    const time = new Date().toLocaleTimeString();
-    const date = new Date().toLocaleDateString();
+    const labValue = "Algokom";
 
     try {
-      const encodedNIM = encodeURIComponent(nim)
-      const verificationResponse = await fetch(`http://10.6.43.100:8080/verify/Algokom/${nama}/${encodedNIM}`); // Adjust the URL accordingly
+      const encodedNIM = encodeURIComponent(nim);
 
-      console.log(encodedNIM)
+      // Update the URL to match the new verify route
+      const verificationResponse = await fetch(`http://localhost:8080/api/data/verify/${nama}/${encodedNIM}/${labValue}`);
+
+      console.log(encodedNIM);
 
       if (verificationResponse.ok) {
         // The verification API returned a successful response
         const verificationData = await verificationResponse.json();
 
-        if (verificationData.verified) {
+        if (verificationData) {
           // The verification was successful, now make the POST request
-          const postResponse = await fetch('/api/Algokom/sheetsAlgokom', {
+          const postResponse = await fetch('http://localhost:8080/api/member', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              date, nama, nim, action, time
+              name: nama,
+              nim: nim,
+              lab: labValue,
             })
           });
 
-          if (postResponse.ok) {
+          const postData = await postResponse.json();
+          if (postData) {
             // The POST request was successful, you can now navigate to the next page
-            router.push(`/Algokom/alat_page?name=${nama}&nim=${nim}&date=${date}`);
+            router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}&lab=${labValue}`);
           } else {
             console.error('Failed to make POST request:', postResponse.status);
-            alert("Failed to make POST request", postResponse.status);
+            alert('Failed to make POST request:', postResponse.status);
           }
         } else {
           console.error('Verification failed. The user is not valid.');
           alert('Verification failed. The user is not valid.');
-
         }
       } else {
         console.error('Failed to verify the user:', verificationResponse.status);

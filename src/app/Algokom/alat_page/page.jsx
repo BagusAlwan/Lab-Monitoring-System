@@ -24,22 +24,35 @@ export default function AlatPage() {
     }
     console.log("Nama:", name);
     console.log("NIM:", nim);
-    const res = await fetch("/api/Algokom/alatSheet", {
+
+
+    const res = await fetch("http://localhost:8080/api/alat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        date,
-        name,
-        nim,
-        selectedOption,
+        name: name,
+        nim: nim,
+        lab: lab,
+        alat: selectedOption
       }),
     });
-
-    console.log(selectedOption)
-
-    router.push("/RPLD/masuk_page");
+    const resData = await res.json()
+    if (resData) {
+      console.log(selectedOption);
+      const getResponse = await fetch("http://10.6.4.100/?open", {
+        method: "GET",
+      });
+      if (getResponse.ok) {
+        console.log("GET request was successful");
+      } else {
+        console.error("GET request failed");
+      }
+      router.push("/RPLD/masuk_page");
+    } else {
+      console.error("POST request failed");
+    }
   };
 
   return (

@@ -43,6 +43,25 @@ memberRouter.get("/group/:lab", async (request: Request, reponse: Response) => {
     }
 })
 
+//Verification
+memberRouter.get("/verify/:name/:nim/:lab", async (request, response) => {
+    const name = request.params.name;
+    const nim = request.params.nim;
+    const lab = request.params.lab;
+
+    try {
+        const dataExists = await MemberService.checkVerify(name, nim, lab);
+
+        if (dataExists) {
+            return response.status(200).json({ message: "Data exists in the database" });
+        } else {
+            return response.status(404).json({ message: "Data not found in the database" });
+        }
+    } catch (err) {
+        return response.status(500).json({ message: "An error occurred while verifying data" });
+    }
+});
+
 //POST
 memberRouter.post("/", body("name").isString(), body("nim").isString(), body("lab").isString(), async (request: Request, reponse: Response) => {
     const err = validationResult(request);
@@ -52,7 +71,7 @@ memberRouter.post("/", body("name").isString(), body("nim").isString(), body("la
     try {
         const member = request.body
         const newMember = await MemberService.createMember(member)
-        return reponse.status(201).json(newMember)
+        return reponse.status(201).json(true)
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }

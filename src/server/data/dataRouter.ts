@@ -43,6 +43,25 @@ dataRouter.get("/group/:lab", async (request: Request, reponse: Response) => {
     }
 })
 
+//Verification
+dataRouter.get("/verify/:name/:nim/:lab", async (request, response) => {
+    const name = request.params.name;
+    const nim = request.params.nim;
+    const lab = request.params.lab;
+
+    try {
+        const dataExists = await DataService.checkVerify(name, nim, lab);
+
+        if (dataExists) {
+            return response.status(200).json(true);
+        } else {
+            return response.status(404).json({ message: "Data not found in the database" });
+        }
+    } catch (err) {
+        return response.status(500).json({ message: "An error occurred while verifying data" });
+    }
+});
+
 //POST
 dataRouter.post("/", body("name").isString(), body("nim").isString(), body("lab").isString(), async (request: Request, reponse: Response) => {
     const err = validationResult(request);

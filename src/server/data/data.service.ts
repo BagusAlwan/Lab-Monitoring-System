@@ -46,6 +46,22 @@ export const getDataLab = async (lab: string): Promise<Data[] | null> => {
     })
 }
 
+export const checkVerify = async (name: string, nim: string, lab: string): Promise<Data | null> => {
+    try {
+        const existingMember = await db.rPLDdata.findFirst({
+            where: {
+                name: name,
+                nim: nim,
+                lab: lab
+            },
+        });
+
+        return existingMember || null;
+    } catch (error) {
+        throw error;
+    }
+};
+
 export const createData = async (data: Omit<Data, 'id'>): Promise<Data> => {
     const { name, nim, lab } = data;
     return db.rPLDdata.create({

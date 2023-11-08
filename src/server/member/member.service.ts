@@ -50,6 +50,22 @@ export const getMemberLab = async (lab: string): Promise<Member[] | null> => {
     })
 }
 
+export const checkVerify = async (name: string, nim: string, lab: string): Promise<Member | null> => {
+    try {
+        const existingMember = await db.rPLDmember.findFirst({
+            where: {
+                name: name,
+                nim: nim,
+                lab: lab
+            },
+        });
+
+        return existingMember || null;
+    } catch (error) {
+        throw error;
+    }
+};
+
 export const createMember = async (member: Omit<Member, 'id'>): Promise<Member> => {
     const { name, nim, lab } = member;
     return db.rPLDmember.create({
