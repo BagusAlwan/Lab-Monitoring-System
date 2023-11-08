@@ -4,41 +4,59 @@ import Image from 'next/image'
 import yellowdots from '../../components/images/yellowdots.png'
 import robot from '../../components/images/robot.png'
 import Link from 'next/link'
-import { initFirebase } from '../firebase/firebase'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { useAuthState } from "react-firebase-hooks/auth"
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-
+import { useEffect } from "react";
+import { loginnnn } from "../api/auths"
 
 export default function DataPage() {
-    initFirebase();
-    const auth = getAuth();
-    const [user, loading] = useAuthState(auth); 
     const router = useRouter();
 
-    const [email, setEmail] = useState('');
+    const [username, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     // harusnya function ini tinggal di call aja ke button or smth?? 
     
-    const signIn = async () => {
-        const user = await signInWithEmailAndPassword(auth, email, password)
-        console.log(user);
-    }
+    // const signIn = async () => {
+    // //     const user = await adminLogin(email, password)
+    // //     console.log(user);
+    // // }
 
-    if (loading) {
-        return <div>LOADING...</div>
-    }
+    // if (loading) {
+    //     return <div>LOADING...</div>
+    // }
 
-    
-
-
-    if (user) {
-        router.push("/admin_page/RPLD")
+    // if (user) {
+    //     router.push("/admin_page/RPLD")
         
+    const signIn = async () => {
+        const user = await loginnnn(username, password);
+        if (user && user.token) {
+            // Store the token in local storage
+            localStorage.setItem('token', user.token);
+            // Redirect to the admin page
+            router.push("/admin_page/RPLD");
+        } else {
+            console.log("Login failed");
+        }
     }
-    
+
+    useEffect(() => {
+        // Check for the presence of the token in local storage
+        const token = localStorage.getItem('token');
+        if (token) {
+            // Token exists, so redirect to the admin page
+            router.push("/admin_page/RPLD");
+        }
+    }, []);
+
+    // // Add a function to log the user out
+    // const signOut = () => {
+    //     // Remove the token from local storage
+    //     localStorage.removeItem('token');
+    //     // Redirect to the login page
+    //     router.push("/login"); // Change this to the login page URL
+    // }
 
     return (
         <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
@@ -62,7 +80,7 @@ export default function DataPage() {
                 <div className="mt-[20px] 2xl:mt-[30px] h-6 text-center text-gray-800 text-xl 2xl:text-2xl font-normal leading-snug">Masukan kunci</div>
 
 
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="bg-gray-50 border max-w-[600px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-4" placeholder="johndoe@gmail.com" required>
+                <input value={username} onChange={(e) => setEmail(e.target.value)} type="email" className="bg-gray-50 border max-w-[600px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-4" placeholder="johndoe@gmail.com" required>
                 </input>
 
                 <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="bg-gray-50 border max-w-[600px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-4" placeholder="•••••••••" required>
@@ -81,12 +99,6 @@ export default function DataPage() {
             
             
             </div>
-
- 
-             
-    
-            
-            
         </div>
         
     )

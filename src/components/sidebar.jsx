@@ -1,4 +1,20 @@
-export default function Sidebar({ isOpen, auth }) {
+import { useRouter } from "next/navigation";
+
+
+
+export default function Sidebar({ isOpen }) {
+
+const router = useRouter();
+
+const signOut = () => {
+
+  // Remove the token from local storage
+  localStorage.removeItem('token');
+  // Redirect to the login page
+  router.push("/admin_login"); // Change this to the login page URL
+}
+
+
   return (
     <div
       className={`bg-[#1D242E] sm:w-[10%] h-full flex flex-col justify-start content-center md:ml-0 md:relative transition-all duration-300 md:transition-none ${
@@ -39,7 +55,7 @@ export default function Sidebar({ isOpen, auth }) {
         <div className="Log Out Button">
           <div
             style={{ cursor: "pointer" }}
-            onClick={() => auth.signOut()}
+            onClick={() => signOut()}
             className=" text-white p-[5px] py-2 mx-[10px] mb-5 bg-teal-600 rounded-md text-[12px] 2xl:text-base lg:text-[10px] font-normal flex justify-center  text-center items-center"
           >
             Keluar
