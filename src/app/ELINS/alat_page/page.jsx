@@ -10,7 +10,7 @@ export default function AlatPage() {
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
   const nim = searchParams.get("nim");
-  const date = searchParams.get("date");
+  const lab = searchParams.get("lab");
 
   const [selectedOption, setSelectedOption] = useState("Alat Pribadi");
   const handleSelectChange = (e) => {
