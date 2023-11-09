@@ -10,7 +10,7 @@ export default function AlatPage() {
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
   const nim = searchParams.get("nim");
-  const lab = searchParams.get("lab");
+  const date = searchParams.get("date");
 
   const [selectedOption, setSelectedOption] = useState("Alat Pribadi");
   const handleSelectChange = (e) => {
@@ -18,49 +18,47 @@ export default function AlatPage() {
   };
 
   const handleSubmitAlat = async (e) => {
+    if (selectedOptions.length === 0) {
+      
+      return;
+    }
+
     e.preventDefault();
     if (selectedOption === "null") {
       return;
     }
     console.log("Nama:", name);
     console.log("NIM:", nim);
-
-
-    const res = await fetch("http://localhost:8080/api/alat", {
+    const res = await fetch("/api/RPLD/alatSheet", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: name,
-        nim: nim,
-        lab: lab,
-        alat: selectedOption
+        date,
+        name,
+        nim,
+        selectedOptions,
       }),
     });
-    const resData = await res.json()
-    if (resData) {
-      console.log(selectedOption);
-      const getResponse = await fetch("http://10.6.4.100/?open", {
-        method: "GET",
-      });
-      if (getResponse.ok) {
-        console.log("GET request was successful");
-      } else {
-        console.error("GET request failed");
-      }
-      router.push("/RPLD/masuk_page");
-    } else {
-      console.error("POST request failed");
-    }
+
+    console.log(selectedOption)
+
+    router.push("/RPLD/masuk_page");
   };
 
+  const alatOptions = [
+    "Alat Pribadi",
+    "Komputer HPC",
+    "Layar LCD Chenghong",
+    "Coffe Maker",
+  ];
 
   return (
     <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
       <Image src={yellowdots} alt="Main Screen" objectFit="contain" />
-      <div className="mt-[100px] md:mt-0 lg:mt-[100px]     h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
-        Pilih alat yg digunakan :{" "}
+      <div className="mt-[100px] md:mt-0 lg:mt-[100px] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
+        Pilih alat yg digunakan:
       </div>
       <div className="pt-[75px] flex justify-center items-center">
         <select
@@ -74,12 +72,12 @@ export default function AlatPage() {
           <option value="Coffee Maker">Coffee Maker</option>
         </select>
       </div>
-
       <div
-        className="mt-[100px]  h-12 relative flex justify-center"
+        className="mt-[100px] h-12 relative flex justify-center"
         onClick={handleSubmitAlat}
+        style={{ cursor: "pointer" }}
       >
-        <div className=" w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
+        <div className="w-60 h-12 left-0 top-0 bg-teal-600 rounded-3xl" />
         <div className="NonAnggota top-[10px] absolute text-center text-white text-lg font-normal">
           MASUK
         </div>
