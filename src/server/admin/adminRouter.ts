@@ -16,10 +16,10 @@ adminRouter.get("/", async (request: Request, reponse: Response) => {
 })
 
 //GET UNIQUE
-adminRouter.get("/:id", async (request: Request, reponse: Response) => {
-    const id: number = parseInt(request.params.id, 10);
+adminRouter.get("/:name", async (request: Request, reponse: Response) => {
+    const name: string = request.params.name;
     try {
-        const admin = await AdminService.getAdmin(id)
+        const admin = await AdminService.getAdmin(name)
         if (admin) {
             return reponse.status(200).json(admin)
         }
