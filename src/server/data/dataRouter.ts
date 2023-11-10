@@ -1,4 +1,4 @@
-import express, { request } from "express";
+import express, { request, response } from "express";
 import type { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import * as DataService from "./data.service"
@@ -43,24 +43,23 @@ dataRouter.get("/group/:lab", async (request: Request, reponse: Response) => {
     }
 })
 
-//Verification
-dataRouter.get("/verify/:name/:nim/:lab", async (request, response) => {
-    const name = request.params.name;
-    const nim = request.params.nim;
-    const lab = request.params.lab;
-
-    try {
-        const dataExists = await DataService.checkVerify(name, nim, lab);
-
-        if (dataExists) {
-            return response.status(200).json(true);
-        } else {
-            return response.status(404).json({ message: "Data not found in the database" });
-        }
-    } catch (err) {
-        return response.status(500).json({ message: "An error occurred while verifying data" });
+//VERIFY
+dataRouter.get("/verify", body("name").isString(), body("nim").isString(), body("lab").isString(), async (request: Request, reponse: Response) => {
+    const { name, nim, lab } = request.body
+    if (!name || !nim) {
+        return response.status(400).json({ error: 'Both name and nim are required' });
     }
-});
+    try {
+        const isDataValid = await DataService.verifyData(name, nim, lab);
+        if (isDataValid) {
+            response.status(200).json({ message: 'Data is valid' });
+        } else {
+            response.status(404).json({ error: 'Data is not valid or does not exist in the database' });
+        }
+    } catch (error) {
+        response.status(500).json({ error: 'Internal server error' });
+    }
+})
 
 //POST
 dataRouter.post("/", body("name").isString(), body("nim").isString(), body("lab").isString(), async (request: Request, reponse: Response) => {

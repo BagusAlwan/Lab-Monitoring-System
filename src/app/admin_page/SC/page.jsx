@@ -27,11 +27,9 @@ export default function AdminPage() {
     <div>
       <Layout
         title={"Lab Sistem Cerdas"}
-        iframevisitorlist="https://docs.google.com/spreadsheets/d/e/2PACX-1vS6WZaV0IcM7tLFhaJOLhBWaGC9HRPG0tfwz0MLH4D21-MDpZEhNqMNcz0htyKmzFOLs_ZG_2SxL1ii/pubhtml?gid=241214832&amp;single=true&amp;widget=true&amp;headers=false"
-        iframevisitordash="https://docs.google.com/spreadsheets/d/e/2PACX-1vS6WZaV0IcM7tLFhaJOLhBWaGC9HRPG0tfwz0MLH4D21-MDpZEhNqMNcz0htyKmzFOLs_ZG_2SxL1ii/pubhtml?gid=1545419633&amp;single=true&amp;widget=true&amp;headers=false"
-        iframetoolslist="https://docs.google.com/spreadsheets/d/e/2PACX-1vS6WZaV0IcM7tLFhaJOLhBWaGC9HRPG0tfwz0MLH4D21-MDpZEhNqMNcz0htyKmzFOLs_ZG_2SxL1ii/pubhtml?gid=922969363&amp;single=true&amp;widget=true&amp;headers=false"
-        iframetoolsdash="https://docs.google.com/spreadsheets/d/e/2PACX-1vS6WZaV0IcM7tLFhaJOLhBWaGC9HRPG0tfwz0MLH4D21-MDpZEhNqMNcz0htyKmzFOLs_ZG_2SxL1ii/pubhtml?gid=1583627477&amp;single=true&amp;widget=true&amp;headers=false"
+       
         auth={auth}
+        lab='SC'
       />
     </div>
   );

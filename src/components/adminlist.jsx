@@ -5,20 +5,61 @@ import DateNow from "../components/date";
 import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
+import ToolsChart from "./toolschart";
+import { useRouter } from 'next/navigation';
 
-export default function AdminList({ isOpen, toggleNav, toggleContent, title, iframetoolslist, iframetoolsdash }) {
+export default function AdminList({
+  isOpen,
+  toggleNav,
+  toggleContent,
+  title,
+  lab,
+}) {
   const callParentFunction = () => {
     toggleNav(); // Call the parent's function
   };
 
-  useEffect(() => {
-    const iframe = document.getElementById("myIframe");
+  // useEffect(() => {
+  //   const iframe = document.getElementById("myIframe");
 
-    function reloadIframe() {
-      iframe.src = iframe.src;
+  //   function reloadIframe() {
+  //     iframe.src = iframe.src;
+  //   }
+  //   const intervalId = setInterval(reloadIframe, 30000);
+  //   return () => clearInterval(intervalId);
+  // }, []);
+
+  const [visitorData, setVisitorData] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/alat/group/${lab}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setVisitorData(data);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
     }
-    const intervalId = setInterval(reloadIframe, 30000);
-    return () => clearInterval(intervalId);
+  };
+
+  useEffect(() => {
+    fetchData(); // Fetch data when the component mounts
+
+    const intervalId = setInterval(fetchData, 5000); // Fetch data every 5 seconds
+
+    return () => clearInterval(intervalId); // Clean up the interval on unmount
   }, []);
 
   return (
@@ -73,31 +114,78 @@ export default function AdminList({ isOpen, toggleNav, toggleContent, title, ifr
             </div>
           </div>
         </div>
+        <button className="w-full mt-8 h-[38px] bg-teal-800 rounded-md ">
+          <div>Tambah Alat Lab</div>
+        </button>
 
         {/* sm and above graph */}
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
-          <iframe
-            id="myIframe"
-            src={iframetoolslist}
-            className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start   "
-          ></iframe>
-          <iframe
-            id="myIframe"
-            src={iframetoolsdash}
-            className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start "
-          ></iframe>
+          <div>
+            <table
+              className="min-w-full table-auto border border-gray-300 text-center text-black space-y-4"
+              border="1"
+            >
+              <thead>
+                <tr>
+                  <th className="border-y">Name</th>
+                  <th className="border-y">NIM</th>
+
+                  <th className="border-y">Time In</th>
+                  <th className="border-y">Alat</th>
+                </tr>
+              </thead>
+              <tbody>
+                {visitorData.map((visitor) => (
+                  <tr key={visitor.id}>
+                    {/* <td  >{visitor.id}</td> */}
+                    <td className="py-3">{visitor.name}</td>
+                    <td>{visitor.nim}</td>
+                    {/* <td>{visitor.lab}</td> */}
+                    <td>{visitor.time}</td>
+                    <td>{visitor.alat}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <ToolsChart chartType="column" data={visitorData} />
+          </div>
         </div>
 
         {/* sm and below graph */}
-        <div className=" mt-[47px] sm:hidden grid grid-rows-2 gap-8 pt-8">
-          <iframe
-            src={iframetoolslist}
-            className="Rectangle h-[300px] rounded border border-gray-800"
-          ></iframe>
-          <iframe
-            src={iframetoolsdash}
-            className="Rectangle h-[300px] rounded border border-gray-800"
-          ></iframe>
+        <div className=" mt-[47px] w-[350px] sm:hidden grid grid-rows-2 gap-8 pt-8">
+          <div>
+            <table
+              className="w-[350px]  table-auto border border-gray-300 text-center text-black space-y-4"
+              border="1"
+            >
+              <thead>
+                <tr>
+                  <th className="border-y">Name</th>
+                  <th className="border-y">NIM</th>
+
+                  <th className="border-y">Time In</th>
+                  <th className="border-y">Alat</th>
+                </tr>
+              </thead>
+              <tbody>
+                {visitorData.map((visitor) => (
+                  <tr key={visitor.id}>
+                    {/* <td  >{visitor.id}</td> */}
+                    <td className="py-3">{visitor.name}</td>
+                    <td>{visitor.nim}</td>
+                    {/* <td>{visitor.lab}</td> */}
+                    <td>{visitor.time}</td>
+                    <td>{visitor.alat}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className='w-[350px]'>
+            <ToolsChart  chartType="column" data={visitorData} />
+          </div>
         </div>
       </div>
     </div>
