@@ -66,7 +66,7 @@ alatRouter.post("/", body("name").isString(), body("nim").isString(), body("lab"
     try {
         const alat = request.body
         const newAlat = await AlatService.createAlat(alat)
-        return reponse.status(201).json(newAlat)
+        return reponse.status(201).json(true)
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }

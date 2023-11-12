@@ -52,7 +52,7 @@ memberRouter.post("/", body("name").isString(), body("nim").isString(), body("la
     try {
         const member = request.body
         const newMember = await MemberService.createMember(member)
-        return reponse.status(201).json(newMember)
+        return reponse.status(201).json(true)
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }

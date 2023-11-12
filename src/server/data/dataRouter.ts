@@ -43,23 +43,24 @@ dataRouter.get("/group/:lab", async (request: Request, reponse: Response) => {
     }
 })
 
-//VERIFY
-dataRouter.get("/verify", body("name").isString(), body("nim").isString(), body("lab").isString(), async (request: Request, reponse: Response) => {
-    const { name, nim, lab } = request.body
-    if (!name || !nim) {
-        return response.status(400).json({ error: 'Both name and nim are required' });
-    }
+//Verification
+dataRouter.get("/verify/:name/:nim/:lab", async (request, response) => {
+    const name = request.params.name;
+    const nim = request.params.nim;
+    const lab = request.params.lab;
+
     try {
-        const isDataValid = await DataService.verifyData(name, nim, lab);
-        if (isDataValid) {
-            response.status(200).json({ message: 'Data is valid' });
+        const dataExists = await DataService.checkVerify(name, nim, lab);
+
+        if (dataExists) {
+            return response.status(200).json(true);
         } else {
-            response.status(404).json({ error: 'Data is not valid or does not exist in the database' });
+            return response.status(404).json({ message: "Data not found in the database" });
         }
-    } catch (error) {
-        response.status(500).json({ error: 'Internal server error' });
+    } catch (err) {
+        return response.status(500).json({ message: "An error occurred while verifying data" });
     }
-})
+});
 
 //POST
 dataRouter.post("/", body("name").isString(), body("nim").isString(), body("lab").isString(), async (request: Request, reponse: Response) => {
@@ -70,7 +71,7 @@ dataRouter.post("/", body("name").isString(), body("nim").isString(), body("lab"
     try {
         const data = request.body
         const newData = await DataService.createData(data)
-        return reponse.status(201).json(newData)
+        return reponse.status(201).json(true)
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }
