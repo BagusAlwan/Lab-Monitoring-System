@@ -27,7 +27,7 @@ export default function NonAnggotaPage() {
     e.preventDefault();
     console.log("Nama:", nama);
     console.log("NIM:", nim);
-    const labValue = "Algokom";
+    const labValue = "ALGOKOM";
 
     try {
       const encodedNIM = encodeURIComponent(nim);
@@ -57,7 +57,7 @@ export default function NonAnggotaPage() {
           const postData = await postResponse.json();
           if (postData) {
             // The POST request was successful, you can now navigate to the next page
-            router.push(`/RPLD/alat_page?name=${nama}&nim=${nim}&lab=${labValue}`);
+            router.push(`/Algokom/alat_page?name=${nama}&nim=${nim}&lab=${labValue}`);
           } else {
             console.error('Failed to make POST request:', postResponse.status);
             alert('Failed to make POST request:', postResponse.status);

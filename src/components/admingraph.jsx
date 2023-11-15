@@ -62,6 +62,16 @@ export default function AdminGrapgh({
     return () => clearInterval(intervalId); // Clean up the interval on unmount
   }, []);
 
+  const sortedData = visitorData.sort((a, b) => {
+    const timeA = new Date(a.time);
+    const timeB = new Date(b.time);
+    return timeB - timeA;
+  });
+  
+  // Use the sortedData array to render the table
+  
+
+
   return (
     <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
       <div className=" bg-white h-[150px] md:h-24 p-8 pt-[50px] md:flex md:flex-row grid grid-rows-2 gap-y-12 items-center justify-between ">
@@ -116,14 +126,14 @@ export default function AdminGrapgh({
         </div>
         <button
           onClick={handleButtonClick}
-          className="w-full mt-8 h-[38px] bg-teal-600 rounded-md "
+          className="w-full mt-8 h-[38px] bg-teal-600 rounded-md text-white "
         >
           <div>Tambah Member Lab</div>
         </button>
 
         {/* sm and above graph */}
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[20px]  ">
-          <div>
+          <div className="max-h-[1000px] overflow-y-auto">
             <table
               className="min-w-full table-auto border border-black text-center text-black space-y-4"
               border="1"
@@ -137,7 +147,7 @@ export default function AdminGrapgh({
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((visitor) => {
+                {sortedData.map((visitor) => {
                   const originalTime = visitor.time;
                   const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
                   const options = {
@@ -162,7 +172,7 @@ export default function AdminGrapgh({
                       </td>
                       {/* <td>{visitor.lab}</td> */}
                       <td className="py-3 border-x border-black">
-                        {visitor.time}
+                        {formattedTime}
                       </td>
                     </tr>
                   );
@@ -191,7 +201,24 @@ export default function AdminGrapgh({
 
         {/* sm and below graph */}
         <div className="w-[350px] sm:hidden grid grid-rows-2 gap-8 pt-8">
-          <div>
+          <div className="w-[350px]">
+            <VisitorChart
+              chartType="column"
+              data={visitorData}
+              timeRange="Daily"
+            />
+            <VisitorChart
+              chartType="column"
+              data={visitorData}
+              timeRange="Weekly"
+            />
+            <VisitorChart
+              chartType="line"
+              data={visitorData}
+              timeRange="Monthly"
+            />
+          </div>
+          <div className="max-h-[1000px] overflow-y-auto">
             <table
               className="w-[350px] table-auto border border-black text-center text-black"
               border="2"
@@ -205,7 +232,7 @@ export default function AdminGrapgh({
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((visitor) => {
+                {sortedData.map((visitor) => {
                   const originalTime = visitor.time;
                   const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
                   const options = {
@@ -230,7 +257,7 @@ export default function AdminGrapgh({
                       </td>
                       {/* <td>{visitor.lab}</td> */}
                       <td className="py-3 border-x border-black">
-                        {visitor.time}
+                        {formattedTime}
                       </td>
                     </tr>
                   );
@@ -238,23 +265,7 @@ export default function AdminGrapgh({
               </tbody>
             </table>
           </div>
-          <div className="w-[350px]">
-            <VisitorChart
-              chartType="column"
-              data={visitorData}
-              timeRange="Daily"
-            />
-            <VisitorChart
-              chartType="column"
-              data={visitorData}
-              timeRange="Weekly"
-            />
-            <VisitorChart
-              chartType="line"
-              data={visitorData}
-              timeRange="Monthly"
-            />
-          </div>
+          
         </div>
       </div>
     </div>

@@ -11,7 +11,8 @@ export default function AlatPage() {
   const name = searchParams.get("name");
   const nim = searchParams.get("nim");
   const lab = searchParams.get("lab");
-
+  const xhr = new XMLHttpRequest();
+  
   const [selectedOption, setSelectedOption] = useState("Alat Pribadi");
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
@@ -40,16 +41,9 @@ export default function AlatPage() {
     });
     const resData = await res.json()
     if (resData) {
-      console.log(selectedOption);
-      const getResponse = await fetch("http://10.6.4.100/?open", {
-        method: "GET",
-      });
-      if (getResponse.ok) {
-        console.log("GET request was successful");
-      } else {
-        console.error("GET request failed");
-      }
-      router.push("/RPLD/masuk_page");
+      xhr.open("GET", "http://10.6.4.100/?open");
+      xhr.send();
+      router.push("/SC/masuk_page");
     } else {
       console.error("POST request failed");
     }
