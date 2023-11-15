@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 import VisitorChart from "./visitorchart";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 export default function AdminGrapgh({
   isOpen,
@@ -22,13 +22,13 @@ export default function AdminGrapgh({
   const router = useRouter();
 
   const handleButtonClick = () => {
-    if (typeof lab === 'string') {
+    if (typeof lab === "string") {
       router.push(`/admin_page/add?currentlab=${lab}`);
     } else {
-      console.error('Lab is not a valid string:', lab);
+      console.error("Lab is not a valid string:", lab);
       // Handle the error or provide a default value as needed
     }
-  }
+  };
 
   const [visitorData, setVisitorData] = useState([]);
   const fetchData = async () => {
@@ -114,9 +114,10 @@ export default function AdminGrapgh({
             </div>
           </div>
         </div>
-        <button 
-        onClick={handleButtonClick}
-        className="w-full mt-8 h-[38px] bg-teal-600 rounded-md ">
+        <button
+          onClick={handleButtonClick}
+          className="w-full mt-8 h-[38px] bg-teal-600 rounded-md "
+        >
           <div>Tambah Member Lab</div>
         </button>
 
@@ -136,15 +137,36 @@ export default function AdminGrapgh({
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((visitor) => (
-                  <tr key={visitor.id}>
-                    {/* <td  >{visitor.id}</td> */}
-                    <td className="py-3">{visitor.name}</td>
-                    <td>{visitor.nim}</td>
-                    {/* <td>{visitor.lab}</td> */}
-                    <td>{visitor.time}</td>
-                  </tr>
-                ))}
+                {visitorData.map((visitor) => {
+                  const originalTime = visitor.time;
+                  const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
+                  const options = {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  };
+                  const formattedTime = parsedTime.toLocaleString(
+                    "en-US",
+                    options
+                  );
+                  return (
+                    <tr key={visitor.id}>
+                      {/* <td  >{visitor.id}</td> */}
+                      <td className="py-3 border-x border-black">
+                        {visitor.name}
+                      </td>
+                      <td className="py-3 border-x border-black">
+                        {visitor.nim}
+                      </td>
+                      {/* <td>{visitor.lab}</td> */}
+                      <td className="py-3 border-x border-black">
+                        {visitor.time}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -176,20 +198,43 @@ export default function AdminGrapgh({
             >
               <thead>
                 <tr>
-                  <th className="border-y border-gray-800">Name</th>
-                  <th className="border-y border-gray-800">NIM</th>
-                  <th className="border-y border-gray-800">Time In</th>
+                  <th className="border-y border-black">Name</th>
+                  <th className="border-y border-black">NIM</th>
+
+                  <th className="border-y border-black">Time In</th>
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((visitor) => (
-                  <tr key={visitor.id}>
-                    <td className="py-3">{visitor.name}</td>
-                    <td>{visitor.nim}</td>
-
-                    <td>{visitor.time}</td>
-                  </tr>
-                ))}
+                {visitorData.map((visitor) => {
+                  const originalTime = visitor.time;
+                  const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
+                  const options = {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  };
+                  const formattedTime = parsedTime.toLocaleString(
+                    "en-US",
+                    options
+                  );
+                  return (
+                    <tr key={visitor.id}>
+                      {/* <td  >{visitor.id}</td> */}
+                      <td className="py-3 border-x border-black">
+                        {visitor.name}
+                      </td>
+                      <td className="py-3 border-x border-black">
+                        {visitor.nim}
+                      </td>
+                      {/* <td>{visitor.lab}</td> */}
+                      <td className="py-3 border-x border-black">
+                        {visitor.time}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>

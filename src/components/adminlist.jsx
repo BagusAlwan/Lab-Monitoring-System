@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 import ToolsChart from "./toolschart";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 export default function AdminList({
   isOpen,
@@ -114,37 +114,60 @@ export default function AdminList({
             </div>
           </div>
         </div>
-        <button className="w-full mt-8 h-[38px] bg-teal-800 rounded-md ">
+        {/* <button className="w-full mt-8 h-[38px] bg-teal-600 rounded-md ">
           <div>Tambah Alat Lab</div>
-        </button>
+        </button> */}
 
         {/* sm and above graph */}
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
           <div>
             <table
-              className="min-w-full table-auto border border-gray-300 text-center text-black space-y-4"
+              className="min-w-full table-auto border border-black text-center text-black space-y-4"
               border="1"
             >
               <thead>
                 <tr>
-                  <th className="border-y">Name</th>
-                  <th className="border-y">NIM</th>
+                  <th className="border-y border-black">Name</th>
+                  <th className="border-y border-black">NIM</th>
 
-                  <th className="border-y">Time In</th>
-                  <th className="border-y">Alat</th>
+                  <th className="border-y border-black">Time In</th>
+                  <th className="border-y border-black">Alat</th>
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((visitor) => (
-                  <tr key={visitor.id}>
-                    {/* <td  >{visitor.id}</td> */}
-                    <td className="py-3">{visitor.name}</td>
-                    <td>{visitor.nim}</td>
-                    {/* <td>{visitor.lab}</td> */}
-                    <td>{visitor.time}</td>
-                    <td>{visitor.alat}</td>
-                  </tr>
-                ))}
+                {visitorData.map((visitor) => {
+                  const originalTime = visitor.time;
+                  const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
+                  const options = {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  };
+                  const formattedTime = parsedTime.toLocaleString(
+                    "en-US",
+                    options
+                  );
+                  return (
+                    <tr key={visitor.id}>
+                      {/* <td  >{visitor.id}</td> */}
+                      <td className="py-3 border-x border-black">
+                        {visitor.name}
+                      </td>
+                      <td className="py-3 border-x border-black">
+                        {visitor.nim}
+                      </td>
+                      {/* <td>{visitor.lab}</td> */}
+                      <td className="py-3 border-x border-black">
+                        {formattedTime}
+                      </td>
+                      <td className="py-3 border-x border-black">
+                        {visitor.alat}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -162,29 +185,52 @@ export default function AdminList({
             >
               <thead>
                 <tr>
-                  <th className="border-y">Name</th>
-                  <th className="border-y">NIM</th>
+                  <th className="border-y border-black">Name</th>
+                  <th className="border-y border-black">NIM</th>
 
-                  <th className="border-y">Time In</th>
-                  <th className="border-y">Alat</th>
+                  <th className="border-y border-black">Time In</th>
+                  <th className="border-y border-black">Alat</th>
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((visitor) => (
-                  <tr key={visitor.id}>
-                    {/* <td  >{visitor.id}</td> */}
-                    <td className="py-3">{visitor.name}</td>
-                    <td>{visitor.nim}</td>
-                    {/* <td>{visitor.lab}</td> */}
-                    <td>{visitor.time}</td>
-                    <td>{visitor.alat}</td>
-                  </tr>
-                ))}
+                {visitorData.map((visitor) => {
+                  const originalTime = visitor.time;
+                  const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
+                  const options = {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  };
+                  const formattedTime = parsedTime.toLocaleString(
+                    "en-US",
+                    options
+                  );
+                  return (
+                    <tr key={visitor.id}>
+                      {/* <td  >{visitor.id}</td> */}
+                      <td className="py-3 border-x border-black">
+                        {visitor.name}
+                      </td>
+                      <td className="py-3 border-x border-black">
+                        {visitor.nim}
+                      </td>
+                      {/* <td>{visitor.lab}</td> */}
+                      <td className="py-3 border-x border-black">
+                        {formattedTime}
+                      </td>
+                      <td className="py-3 border-x border-black">
+                        {visitor.alat}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
-          <div className='w-[350px]'>
-            <ToolsChart  chartType="column" data={visitorData} />
+          <div className="w-[350px]">
+            <ToolsChart chartType="column" data={visitorData} />
           </div>
         </div>
       </div>

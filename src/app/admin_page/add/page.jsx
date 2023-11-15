@@ -1,10 +1,8 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-
-
+import React, { useState, useEffect } from "react";
 import { set } from "date-fns";
 // components/CRUD.js
-import React, { useState } from "react";
 
 export default function CRUD() {
   const [items, setItems] = useState([]);
@@ -31,25 +29,84 @@ export default function CRUD() {
           nim: itemNIM,
           lab: currentLab,
         }),
-      })
+      });
       console.log(res);
     }
-
   };
 
-  const deleteItem = (id) => {
-    setItems(items.filter((item) => item.id !== id));
-    
+  const [visitorData, setVisitorData] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/data/group/${currentLab}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setVisitorData(data);
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   };
 
+  useEffect(() => {
+    fetchData(); // Fetch data when the component mounts
+
+    const intervalId = setInterval(fetchData, 5000); // Fetch data every 5 seconds
+
+    return () => clearInterval(intervalId); // Clean up the interval on unmount
+  }, []);
+
+  const deleteItem = async (id) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/data/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      if (response.ok) {
+        // If the deletion was successful, update the state to reflect the changes
+        setVisitorData((prevData) =>
+          prevData.filter((item) => item.id !== id)
+        );
+      } else {
+        console.error("Failed to delete data");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
 
   return (
     <div className="bg-slate-50 min-h-screen h-full w-screen">
       <div className="container mx-auto p-8">
+        <button
+          onClick={() => router.back()}
+          className="bg-teal-600 text-white p-3 rounded"
+        >
+          Back
+        </button>
         <h1 className="text-4xl font-bold mb-8 text-center text-black">
-          Lab Member Input
+          Lab {currentLab} Member Input
         </h1>
-        <h2 className="text-2xl font-semibold my-4 pt-4 text-black">Student Detail</h2>
+
+        <h2 className="text-2xl font-semibold my-4 pt-4 text-black">
+          Student Detail
+        </h2>
         <div className="flex items-center mb-4 ">
           <input
             type="text"
@@ -74,7 +131,9 @@ export default function CRUD() {
             Create
           </button>
         </div>
-        <h2 className="text-2xl font-semibold mb-4 pt-4 text-black">Item List</h2>
+        <h2 className="text-2xl font-semibold mb-4 pt-4 text-black">
+          Item List
+        </h2>
         <div className="bg-white rounded shadow border-2">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -86,7 +145,7 @@ export default function CRUD() {
                 </tr>
               </thead>
               <tbody>
-                {items.map((item) => (
+                {visitorData.map((item) => (
                   <tr key={item.id} className="border-b">
                     <td className="py-3 pl-4 text-black">{item.name}</td>
                     <td className="py-3 pl-4 text-black">{item.nim}</td>
