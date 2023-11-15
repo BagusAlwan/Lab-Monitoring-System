@@ -34,7 +34,7 @@ export default function AdminGrapgh({
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/member/group/${lab}`,
+        `http://10.6.43.100:8080/api/member/group/${lab}`,
         {
           method: "GET",
           headers: {

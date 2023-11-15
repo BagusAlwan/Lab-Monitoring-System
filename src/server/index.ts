@@ -40,7 +40,7 @@ app.use("/api/admin/login/:name/:password", async (req, res) => {
       password: user.password,
     };
 
-    console.log(payload);
+    // console.log(payload);
 
     const secret = "zero";
 
@@ -52,7 +52,7 @@ app.use("/api/admin/login/:name/:password", async (req, res) => {
       data: {
         id: user.id,
         name: user.name,
-        password: user.password,
+        // password: user.password,
       },
       token: token,
     });

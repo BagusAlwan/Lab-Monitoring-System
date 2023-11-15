@@ -21,7 +21,7 @@ adminRouter.get("/:name", async (request: Request, reponse: Response) => {
     try {
         const admin = await AdminService.getAdmin(name)
         if (admin) {
-            return reponse.status(200).json(admin)
+            return reponse.status(200)
         }
         return reponse.status(404).json("no admin");
     } catch (err: any) {

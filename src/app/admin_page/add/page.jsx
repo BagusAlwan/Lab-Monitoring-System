@@ -19,7 +19,7 @@ export default function CRUD() {
       setItems([...items, { id: Date.now(), name: itemName, nim: itemNIM }]);
       setItemName("");
       setItemNIM("");
-      const res = await fetch("http://localhost:8080/api/data/", {
+      const res = await fetch("http://10.6.43.100:8080/api/data/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export default function CRUD() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/data/group/${currentLab}`,
+        `http://10.6.43.100:8080/api/data/group/${currentLab}`,
         {
           method: "GET",
           headers: {
@@ -69,7 +69,7 @@ export default function CRUD() {
   const deleteItem = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/data/${id}`,
+        `http://10.6.43.100:8080/api/data/${id}`,
         {
           method: "DELETE",
           headers: {

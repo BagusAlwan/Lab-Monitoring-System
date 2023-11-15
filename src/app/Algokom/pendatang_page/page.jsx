@@ -4,6 +4,7 @@ import Image from "next/image";
 import yellowdots from "../../../components/images/yellowdots.png";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import DateNow from "@/components/date";
 
 
 export default function NonAnggotaPage() {
@@ -28,12 +29,13 @@ export default function NonAnggotaPage() {
     console.log("Nama:", nama);
     console.log("NIM:", nim);
     const labValue = "ALGOKOM";
+  
 
     try {
       const encodedNIM = encodeURIComponent(nim);
 
       // Update the URL to match the new verify route
-      const verificationResponse = await fetch(`http://localhost:8080/api/data/verify/${nama}/${encodedNIM}/${labValue}`);
+      const verificationResponse = await fetch(`http://10.6.43.100:8080/api/data/verify/${nama}/${encodedNIM}/${labValue}`);
 
       console.log(encodedNIM);
 
@@ -43,7 +45,7 @@ export default function NonAnggotaPage() {
 
         if (verificationData) {
           // The verification was successful, now make the POST request
-          const postResponse = await fetch('http://localhost:8080/api/member', {
+          const postResponse = await fetch('http://10.6.43.100:8080/api/member', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -52,6 +54,7 @@ export default function NonAnggotaPage() {
               name: nama,
               nim: nim,
               lab: labValue,
+              
             })
           });
           const postData = await postResponse.json();
