@@ -150,6 +150,7 @@ export default function AdminGrapgh({
                 {sortedData.map((visitor) => {
                   const originalTime = visitor.time;
                   const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
+                  parsedTime.setHours(parsedTime.getHours() + 7);
                   const options = {
                     year: "numeric",
                     month: "2-digit",
@@ -235,6 +236,7 @@ export default function AdminGrapgh({
                 {sortedData.map((visitor) => {
                   const originalTime = visitor.time;
                   const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
+                  parsedTime.setHours(parsedTime.getHours() + 7);
                   const options = {
                     year: "numeric",
                     month: "2-digit",

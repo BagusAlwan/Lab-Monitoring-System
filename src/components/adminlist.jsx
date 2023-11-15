@@ -62,6 +62,12 @@ export default function AdminList({
     return () => clearInterval(intervalId); // Clean up the interval on unmount
   }, []);
 
+  const sortedData = visitorData.sort((a, b) => {
+    const timeA = new Date(a.time);
+    const timeB = new Date(b.time);
+    return timeB - timeA;
+  });
+
   return (
     <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
       <div className=" bg-white h-[150px] md:h-24 p-8 pt-[50px] md:flex md:flex-row grid grid-rows-2 gap-y-12 items-center justify-between ">
@@ -135,9 +141,10 @@ export default function AdminList({
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((visitor) => {
+                {sortedData.map((visitor) => {
                   const originalTime = visitor.time;
                   const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
+                  parsedTime.setHours(parsedTime.getHours() + 7);
                   const options = {
                     year: "numeric",
                     month: "2-digit",
@@ -193,9 +200,10 @@ export default function AdminList({
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((visitor) => {
+                {sortedData.map((visitor) => {
                   const originalTime = visitor.time;
                   const parsedTime = new Date(originalTime.slice(0, -1)); // Remove 'Z' at the end
+                  parsedTime.setHours(parsedTime.getHours() + 7);
                   const options = {
                     year: "numeric",
                     month: "2-digit",

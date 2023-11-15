@@ -105,6 +105,7 @@ function calculateWeekData(data) {
 
   data.forEach((entry) => {
     const date = new Date(entry.time);
+    date.setHours(date.getHours() + 7);
     const dayOfWeek = date.getUTCDay(); // 0 for Sunday, 1 for Monday, etc.
     weeklyData[dayOfWeek]++;
   });
@@ -121,6 +122,7 @@ function calculateMonthlyData(data) {
 
   data.forEach((entry) => {
     const date = new Date(entry.time);
+    date.setHours(date.getHours() + 7);
     const year = date.getUTCFullYear();
     const month = date.getUTCMonth();
     //const weekNumber = getWeekNumber(date);
@@ -160,6 +162,7 @@ function getDayName(dayNumber) {
 
 function calculateWeeklyData(data) {
   const currentDate = new Date();
+  currentDate.setHours(currentDate.getHours() + 7);
   const currentYear = currentDate.getUTCFullYear();
   const currentMonth = currentDate.getUTCMonth();
 
@@ -181,6 +184,7 @@ function calculateWeeklyData(data) {
 
   data.forEach((entry) => {
     const date = new Date(entry.time);
+    date.setHours(date.getHours() + 7);
     if (date >= firstDay && date.getUTCMonth() === currentMonth) {
       // Only consider entries from the current month
       const weekNumber = Math.floor((date.getUTCDate() + firstDayOfWeek) / daysInWeek) + 1;
