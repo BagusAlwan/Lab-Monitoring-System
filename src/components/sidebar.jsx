@@ -1,9 +1,18 @@
-export default function Sidebar({ isOpen, auth }) {
+import { useRouter } from "next/navigation";
+
+export default function Sidebar({ isOpen }) {
+
+  const router = useRouter();
+
+  const signOut = () => {
+    localStorage.removeItem('token');
+    router.push("/admin_login");
+  }
+
   return (
     <div
-      className={`bg-[#1D242E] sm:w-[10%] h-full flex flex-col justify-start content-center md:ml-0 md:relative transition-all duration-300 md:transition-none ${
-        isOpen ? " w-[10%] absolute ml-[-10%]" : ""
-      }`}
+      className={`bg-[#1D242E] sm:w-[10%] h-full flex flex-col justify-start content-center md:ml-0 md:relative transition-all duration-300 md:transition-none ${isOpen ? " w-[10%] absolute ml-[-10%]" : ""
+        }`}
     >
       <div className="px-6 py-10 text-lg font-semibold leading-normal flex justify-center items-center">
         <h2 className="text-center text-white 2xl:text-2xl">Admin</h2>
@@ -39,7 +48,7 @@ export default function Sidebar({ isOpen, auth }) {
         <div className="Log Out Button">
           <div
             style={{ cursor: "pointer" }}
-            onClick={() => auth.signOut()}
+            onClick={() => signOut()}
             className=" text-white p-[5px] py-2 mx-[10px] mb-5 bg-teal-600 rounded-md text-[12px] 2xl:text-base lg:text-[10px] font-normal flex justify-center  text-center items-center"
           >
             Keluar

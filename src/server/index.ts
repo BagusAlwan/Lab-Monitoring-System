@@ -41,7 +41,7 @@ app.use("/api/admin/login/:name/:password", async (req, res) => {
     };
 
     console.log(payload);
-    
+
     const secret = "zero";
 
     const expiresIn = 60 * 30;
@@ -62,38 +62,38 @@ app.use("/api/admin/login/:name/:password", async (req, res) => {
 });
 
 const accessValidation = (req: Request, res: Response, next: NextFunction) => {
-    const validationReq = req as ValidationRequest;
-    const authorization = req.headers['authorization']; 
+  const validationReq = req as ValidationRequest;
+  const authorization = req.headers['authorization'];
 
-    if (!authorization || !authorization.startsWith('Bearer ')) {
-        return res.status(403).json({ message: 'Invalid or missing token' });
+  if (!authorization || !authorization.startsWith('Bearer ')) {
+    return res.status(403).json({ message: 'Invalid or missing token' });
+  }
+
+  const token = authorization.split('Bearer ')[1];
+
+  const secret = "zero";
+
+  if (typeof token === 'string') {
+    try {
+      const jwtDecode = jwt.verify(token, secret);
+      if (typeof jwtDecode !== 'string') {
+        validationReq.userData = jwtDecode as UserData;
+      }
+    } catch (e) {
+      if (typeof e === 'string') {
+        console.error(e);
+      } else if (e instanceof Error) {
+        console.error(e.message);
+      } else {
+        console.error("An error occurred:", e);
+      }
+      return res.status(401).json({ message: 'unauthorized' });
     }
+  } else {
+    return res.status(401).json({ message: 'unauthorized' });
+  }
 
-    const token = authorization.split('Bearer ')[1]; 
-
-    const secret = "zero";
-
-    if (typeof token === 'string') {
-        try {
-            const jwtDecode = jwt.verify(token, secret);
-            if (typeof jwtDecode !== 'string') {
-                validationReq.userData = jwtDecode as UserData;
-            }
-        } catch (e) {
-            if (typeof e === 'string') {
-                console.error(e);
-            } else if (e instanceof Error) {
-                console.error(e.message);
-            } else {
-                console.error("An error occurred:", e);
-            }
-            return res.status(401).json({ message: 'unauthorized' });
-        }
-    } else {
-        return res.status(401).json({ message: 'unauthorized' });
-    }
-
-    next();
+  next();
 }
 
 app.use("/api/admin", accessValidation, adminRouter);

@@ -42,7 +42,7 @@ export default function AlatPage() {
     if (resData) {
       console.log(selectedOption);
       const getResponse = await fetch("http://10.6.4.100/?open", {
-        method: "GET",
+        method: "POST",
       });
       if (getResponse.ok) {
         console.log("GET request was successful");
