@@ -16,8 +16,6 @@ export default function CRUDAlat() {
   const createItem = async () => {
     if (itemAlat.trim() !== "") {
       setItems([...items, { id: Date.now(), alat: itemAlat }]);
-      setItemName("");
-      setItemNIM("");
       const res = await fetch("http://localhost:8080/api/alatData/", {
         method: "POST",
         headers: {
@@ -105,7 +103,7 @@ export default function CRUDAlat() {
             type="text"
             placeholder="Nama Alat"
             value={itemAlat}
-            onChange={(e) => setItemNIM(e.target.value.toLowerCase())}
+            onChange={(e) => setItemAlat(e.target.value.toLowerCase())}
             className="p-3 rounded w-3/4 focus:outline-none text-black border-2"
           />
           <button
