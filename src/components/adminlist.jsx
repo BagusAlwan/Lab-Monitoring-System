@@ -30,6 +30,22 @@ export default function AdminList({
     }
   };
 
+
+  const { RangePicker } = DatePicker;
+  const [selectedRange, setSelectedRange] = useState(null);
+
+  const handleDateChange = (dates, dateStrings) => {
+    
+   
+    setSelectedRange({
+      startDate: dates[0],
+      endDate: dates[1],
+    });
+
+    
+    console.log('Selected Range:', dateStrings);
+  };
+
   const [visitorData, setVisitorData] = useState([]);
 
   const fetchData = async () => {
@@ -121,6 +137,22 @@ export default function AdminList({
             </div>
           </div>
         </div>
+
+        <RangePicker
+        onChange={handleDateChange}
+        size="medium" 
+        className= "mt-4 p-2 w-[500px]"
+      />
+      
+        {/* contoh buat ka bagus pm :> */}
+        {selectedRange && (
+        <div>
+          <p className="text-black">Start Date: {selectedRange.startDate.format('YYYY-MM-DD')}</p>
+          <p className="text-black">End Date: {selectedRange.endDate.format('YYYY-MM-DD')}</p>
+        </div>
+      )}
+      
+
         <button
           onClick={handleButtonClick}
           className="w-full mt-8 h-[38px] bg-teal-600 rounded-md text-white "

@@ -30,6 +30,21 @@ export default function AdminGrapgh({
     }
   };
 
+  const { RangePicker } = DatePicker;
+  const [selectedRange, setSelectedRange] = useState(null);
+
+  const handleDateChange = (dates, dateStrings) => {
+    
+   
+    setSelectedRange({
+      startDate: dates[0],
+      endDate: dates[1],
+    });
+
+    
+    console.log('Selected Range:', dateStrings);
+  };
+
   const [visitorData, setVisitorData] = useState([]);
   const fetchData = async () => {
     try {
@@ -70,8 +85,6 @@ export default function AdminGrapgh({
 
   // Use the sortedData array to render the table
 
-
-
   return (
     <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
       <div className=" bg-white h-[150px] md:h-24 p-8 pt-[50px] md:flex md:flex-row grid grid-rows-2 gap-y-12 items-center justify-between ">
@@ -90,8 +103,9 @@ export default function AdminGrapgh({
       <div
         type="button"
         onClick={callParentFunction}
-        className={` justify-self-start self-center z-20 md:hidden ${!isOpen ? "absolute w-[10%] " : " absolute  "
-          }`}
+        className={` justify-self-start self-center z-20 md:hidden ${
+          !isOpen ? "absolute w-[10%] " : " absolute  "
+        }`}
       >
         <Image
           alt="navbararrow"
@@ -123,9 +137,24 @@ export default function AdminGrapgh({
             </div>
           </div>
         </div>
+
+        <RangePicker
+        onChange={handleDateChange}
+        size="medium" 
+        className= "mt-4 p-2 w-[500px]"
+      />
+
+      {/* contoh buat ka bagus pm :> */}
+      {selectedRange && (
+        <div>
+          <p className="text-black">Start Date: {selectedRange.startDate.format('YYYY-MM-DD')}</p>
+          <p className="text-black">End Date: {selectedRange.endDate.format('YYYY-MM-DD')}</p>
+        </div>
+      )}
+
         <button
           onClick={handleButtonClick}
-          className="w-full mt-8 h-[38px] bg-teal-600 rounded-md text-white "
+          className="w-full mt-6 h-[38px] bg-teal-600 rounded-md text-white "
         >
           <div>Tambah Member Lab</div>
         </button>
@@ -266,7 +295,6 @@ export default function AdminGrapgh({
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
     </div>
