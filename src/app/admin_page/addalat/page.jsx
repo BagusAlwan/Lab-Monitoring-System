@@ -4,10 +4,9 @@ import React, { useState, useEffect } from "react";
 import { set } from "date-fns";
 // components/CRUD.js
 
-export default function CRUD() {
+export default function CRUDAlat() {
   const [items, setItems] = useState([]);
-  const [itemName, setItemName] = useState("");
-  const [itemNIM, setItemNIM] = useState("");
+  const [itemAlat, setItemAlat] = useState("");
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -15,18 +14,17 @@ export default function CRUD() {
   console.log(currentLab);
 
   const createItem = async () => {
-    if (itemName.trim() !== "" && itemNIM.trim() !== "") {
-      setItems([...items, { id: Date.now(), name: itemName, nim: itemNIM }]);
+    if (itemAlat.trim() !== "") {
+      setItems([...items, { id: Date.now(), alat: itemAlat }]);
       setItemName("");
       setItemNIM("");
-      const res = await fetch("http://10.6.45.100:8080/api/data/", {
+      const res = await fetch("http://localhost:8080/api/alatData/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: itemName,
-          nim: itemNIM,
+          alat: itemAlat,
           lab: currentLab,
         }),
       });
@@ -34,11 +32,11 @@ export default function CRUD() {
     }
   };
 
-  const [visitorData, setVisitorData] = useState([]);
+  const [alatData, setAlatData] = useState([]);
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://10.6.45.100:8080/api/data/group/${currentLab}`,
+        `http://localhost:8080/api/alatData/group/${currentLab}`,
         {
           method: "GET",
           headers: {
@@ -49,7 +47,7 @@ export default function CRUD() {
 
       if (response.ok) {
         const data = await response.json();
-        setVisitorData(data);
+        setAlatData(data);
       } else {
         console.error("Failed to fetch data");
       }
@@ -68,21 +66,16 @@ export default function CRUD() {
 
   const deleteItem = async (id) => {
     try {
-      const response = await fetch(
-        `http://10.6.45.100:8080/api/data/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-  
+      const response = await fetch(`http://localhost:8080/api/alatData/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       if (response.ok) {
         // If the deletion was successful, update the state to reflect the changes
-        setVisitorData((prevData) =>
-          prevData.filter((item) => item.id !== id)
-        );
+        setAlatData((prevData) => prevData.filter((item) => item.id !== id));
       } else {
         console.error("Failed to delete data");
       }
@@ -101,26 +94,17 @@ export default function CRUD() {
           Back
         </button>
         <h1 className="text-4xl font-bold mb-8 text-center text-black">
-          Input Member Lab {currentLab}
+          Input Alat Lab {currentLab}
         </h1>
 
         <h2 className="text-2xl font-semibold my-4 pt-4 text-black">
-          Detail Mahasiswa
+          Detail Alat
         </h2>
         <div className="flex items-center mb-4 ">
           <input
             type="text"
-            placeholder="Nama Mahasiswa"
-            value={itemName}
-            onChange={(e) => setItemName(e.target.value.toLowerCase())}
-            className="p-3 rounded w-3/4 focus:outline-none text-black border-2"
-          />
-        </div>
-        <div className="flex items-center mb-4 ">
-          <input
-            type="text"
-            placeholder="NIM Mahasiswa"
-            value={itemNIM}
+            placeholder="Nama Alat"
+            value={itemAlat}
             onChange={(e) => setItemNIM(e.target.value.toLowerCase())}
             className="p-3 rounded w-3/4 focus:outline-none text-black border-2"
           />
@@ -139,16 +123,16 @@ export default function CRUD() {
             <table className="w-full">
               <thead>
                 <tr className="border-b">
-                  <th className="py-2 text-left pl-4 text-black">Nama</th>
-                  <th className="py-2 text-left pl-4 text-black">NIM</th>
+                  <th className="py-2 text-left pl-4 text-black">Alat</th>
+
                   <th className="py-2 text-right pr-4 text-black">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {visitorData.map((item) => (
+                {alatData.map((item) => (
                   <tr key={item.id} className="border-b">
-                    <td className="py-3 pl-4 text-black">{item.name}</td>
-                    <td className="py-3 pl-4 text-black">{item.nim}</td>
+                    <td className="py-3 pl-4 text-black">{item.alat}</td>
+
                     <td className="py-3 pr-4 text-right text-black">
                       <button
                         onClick={() => deleteItem(item.id)}
