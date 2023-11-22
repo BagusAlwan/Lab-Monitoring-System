@@ -19,22 +19,23 @@ export default function AdminList({
     toggleNav(); // Call the parent's function
   };
 
-  // useEffect(() => {
-  //   const iframe = document.getElementById("myIframe");
+  const router = useRouter();
 
-  //   function reloadIframe() {
-  //     iframe.src = iframe.src;
-  //   }
-  //   const intervalId = setInterval(reloadIframe, 30000);
-  //   return () => clearInterval(intervalId);
-  // }, []);
+  const handleButtonClick = () => {
+    if (typeof lab === "string") {
+      router.push(`/admin_page/addalat?currentlab=${lab}`);
+    } else {
+      console.error("Lab is not a valid string:", lab);
+      // Handle the error or provide a default value as needed
+    }
+  };
 
   const [visitorData, setVisitorData] = useState([]);
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://10.6.45.100:8080/api/alat/group/${lab}`,
+        `http://localhost:8080/api/alat/group/${lab}`,
         {
           method: "GET",
           headers: {
@@ -120,13 +121,16 @@ export default function AdminList({
             </div>
           </div>
         </div>
-        {/* <button className="w-full mt-8 h-[38px] bg-teal-600 rounded-md ">
+        <button
+          onClick={handleButtonClick}
+          className="w-full mt-8 h-[38px] bg-teal-600 rounded-md text-white "
+        >
           <div>Tambah Alat Lab</div>
-        </button> */}
+        </button>
 
         {/* sm and above graph */}
         <div className="sm:grid w-full hidden h-[900px] md:h-[390px] lg:h-[410px] xl:h-[580px] 2xl:h-[880px] sm:grid-rows-2 sm:grid-cols-1 md:grid-rows-1 md:grid-cols-2 gap-8 justify-start lg:pt-[25px] pt-[47px]  ">
-          <div>
+          <div className="max-h-[1000px] overflow-y-auto">
             <table
               className="min-w-full table-auto border border-black text-center text-black space-y-4"
               border="1"
