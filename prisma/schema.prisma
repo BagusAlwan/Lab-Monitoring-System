@@ -39,3 +39,9 @@ model RPLDdata {
   nim  String
   lab  String
 }
+
+model alatData {
+  id   Int    @id @default(autoincrement())
+  alat String
+  lab  String
+}

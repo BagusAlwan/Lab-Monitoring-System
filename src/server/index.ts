@@ -7,6 +7,7 @@ import { dataRouter } from "./data/dataRouter";
 import { alatRouter } from "./alat/alatRouter";
 import { memberRouter } from "./member/memberRouter";
 import { getAdmin } from "./admin/admin.service";
+import { alatDataRouter } from "./alatData/alatDataRouter";
 
 const PORT: number = parseInt(process.env.PORT as string, 10) || 8080;
 const app = express();
@@ -98,6 +99,7 @@ const accessValidation = (req: Request, res: Response, next: NextFunction) => {
 
 app.use("/api/admin", accessValidation, adminRouter);
 app.use("/api/data", dataRouter);
+app.use("/api/alatData", alatDataRouter);
 app.use("/api/alat", alatRouter);
 app.use("/api/member", memberRouter);
 
