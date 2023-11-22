@@ -9,7 +9,7 @@ export const memberRouter = express.Router();
 memberRouter.get("/", async (request: Request, reponse: Response) => {
     try {
         const member = await MemberService.listMembers()
-        return reponse.status(200).json(member)
+        return reponse.status(200).json(member);
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }
@@ -21,7 +21,7 @@ memberRouter.get("/:id", async (request: Request, reponse: Response) => {
     try {
         const member = await MemberService.getMember(id)
         if (member) {
-            return reponse.status(200).json(member)
+            return reponse.status(200).json(member);
         }
         return reponse.status(404).json("no member");
     } catch (err: any) {
@@ -35,9 +35,27 @@ memberRouter.get("/group/:lab", async (request: Request, reponse: Response) => {
     try {
         const member = await MemberService.getMemberLab(lab)
         if (member) {
-            return reponse.status(200).json(member)
+            return reponse.status(200).json(member);
         }
         return reponse.status(404).json("no member");
+    } catch (err: any) {
+        return reponse.status(500).json(err.message);
+    }
+})
+
+memberRouter.get("/group/:lab/:startDate/:endDate", async (request: Request, reponse: Response) => {
+    const lab: string = request.params.lab;
+    const startDateString: string = request.params.startDate;
+    const endDateString: string = request.params.endDate;
+
+    const startDate: Date = new Date(startDateString);
+    const endDate: Date = new Date(endDateString);
+    try {
+        const member = await MemberService.filterMembers(lab, startDate, endDate)
+        if (member) {
+            return reponse.status(200).json(member);
+        }
+        return reponse.status(404).json("no alat");
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }
@@ -50,9 +68,9 @@ memberRouter.post("/", body("name").isString(), body("nim").isString(), body("la
         return reponse.status(400).json({ error: err.array() });
     }
     try {
-        const member = request.body
-        const newMember = await MemberService.createMember(member)
-        return reponse.status(201).json(true)
+        const member = request.body;
+        const newMember = await MemberService.createMember(member);
+        return reponse.status(201).json(true);
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }
@@ -64,11 +82,11 @@ memberRouter.put("/:id", body("name").isString(), body("nim").isString(), body("
     if (!err.isEmpty()) {
         return reponse.status(400).json({ error: err.array() });
     }
-    const id: number = parseInt(request.params.id, 10)
+    const id: number = parseInt(request.params.id, 10);
     try {
-        const member = request.body
-        const updatedMember = await MemberService.upadateMember(member, id)
-        return reponse.status(201).json(updatedMember)
+        const member = request.body;
+        const updatedMember = await MemberService.upadateMember(member, id);
+        return reponse.status(201).json(updatedMember);
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }
@@ -76,10 +94,10 @@ memberRouter.put("/:id", body("name").isString(), body("nim").isString(), body("
 
 //DELETE
 memberRouter.delete("/:id", async (request: Request, reponse: Response) => {
-    const id: number = parseInt(request.params.id, 10)
+    const id: number = parseInt(request.params.id, 10);
     try {
-        await MemberService.deleteMember(id)
-        return reponse.status(201).json("Deleted")
+        await MemberService.deleteMember(id);
+        return reponse.status(201).json("Deleted");
     } catch (err: any) {
         return reponse.status(500).json(err.message);
     }

@@ -54,6 +54,27 @@ export const getAlatLab = async (lab: string): Promise<Alat[] | null> => {
     })
 }
 
+export const filterAlatLab = async (lab: string, startDate: Date, endDate: Date): Promise<Alat[] | null> => {
+    return db.rPLDalat.findMany({
+        where: {
+            lab,
+            time: {
+                gte: startDate, 
+                lte: endDate, 
+            }
+        },
+        select: {
+            id: true,
+            name: true,
+            nim: true,
+            lab: true,
+            time: true,
+            alat: true,
+        },
+    })
+}
+
+
 export const getAlatalat = async (alat: string): Promise<Alat[] | null> => {
     return db.rPLDalat.findMany({
         where: {
