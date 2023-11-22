@@ -34,7 +34,7 @@ export default function AdminGrapgh({
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://10.6.45.100:8080/api/member/group/${lab}`,
+        `http://localhost:8080/api/member/group/${lab}`,
         {
           method: "GET",
           headers: {
@@ -67,9 +67,9 @@ export default function AdminGrapgh({
     const timeB = new Date(b.time);
     return timeB - timeA;
   });
-  
+
   // Use the sortedData array to render the table
-  
+
 
 
   return (
@@ -90,9 +90,8 @@ export default function AdminGrapgh({
       <div
         type="button"
         onClick={callParentFunction}
-        className={` justify-self-start self-center z-20 md:hidden ${
-          !isOpen ? "absolute w-[10%] " : " absolute  "
-        }`}
+        className={` justify-self-start self-center z-20 md:hidden ${!isOpen ? "absolute w-[10%] " : " absolute  "
+          }`}
       >
         <Image
           alt="navbararrow"
@@ -267,7 +266,7 @@ export default function AdminGrapgh({
               </tbody>
             </table>
           </div>
-          
+
         </div>
       </div>
     </div>

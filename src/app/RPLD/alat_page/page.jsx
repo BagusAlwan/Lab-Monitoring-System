@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import yellowdots from "../../../components/images/yellowdots.png";
-import { useState } from "react"; // Import the useState hook
+import { useState, useEffect } from "react"; // Import the useState hook
 import { useSearchParams, useRouter } from "next/navigation";
 
 export default function AlatPage() {
@@ -12,7 +12,7 @@ export default function AlatPage() {
   const nim = searchParams.get("nim");
   const lab = searchParams.get("lab");
   const xhr = new XMLHttpRequest();
-  
+
   const [selectedOption, setSelectedOption] = useState("Alat Pribadi");
   const handleSelectChange = (e) => {
     setSelectedOption(e.target.value);
@@ -27,7 +27,7 @@ export default function AlatPage() {
     console.log("NIM:", nim);
 
 
-    const res = await fetch("http://10.6.45.100:8080/api/alat", {
+    const res = await fetch("http://localhost:8080/api/alat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,12 +49,38 @@ export default function AlatPage() {
     }
   };
 
-  const alatOptions = [
-    "Alat Pribadi",
-    "Komputer HPC",
-    "Layar LCD Chenghong",
-    "Coffe Maker",
-  ];
+  const [visitorData, setVisitorData] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/alatData/group/${lab}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setVisitorData(data);
+        console.log("Fetched Data:", data); // Log the fetched data
+      } else {
+        console.error("Failed to fetch data");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Fetch data when the component mounts
+
+    const intervalId = setInterval(fetchData, 5000); // Fetch data every 5 seconds
+
+    return () => clearInterval(intervalId); // Clean up the interval on unmount
+  }, []);
 
   return (
     <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
@@ -68,10 +94,11 @@ export default function AlatPage() {
           onChange={handleSelectChange} // Call handleSelectChange on select change
           value={selectedOption} // Set the selected value based on the state
         >
-          <option value="Alat Pribadi">Alat Pribadi</option>
-          <option value="Komputer HPC">Komputer HPC</option>
-          <option value="Layar LCD Chenghong">Layar LCD Chenghong</option>
-          <option value="Coffee Maker">Coffee Maker</option>
+          {visitorData.map((item) => (
+            <option key={item.id} value={item.alat}>
+              {item.alat}
+            </option>
+          ))}
         </select>
       </div>
       <div
