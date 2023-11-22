@@ -1,12 +1,14 @@
 import Image from "next/image";
 import dot from "../components/images/dot.svg";
-import { DatePicker } from "antd";
+//import { DatePicker } from "antd";
 import DateNow from "../components/date";
 import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 import VisitorChart from "./visitorchart";
 import { useRouter } from "next/navigation";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function AdminGrapgh({
   isOpen,
@@ -29,6 +31,9 @@ export default function AdminGrapgh({
       // Handle the error or provide a default value as needed
     }
   };
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const [visitorData, setVisitorData] = useState([]);
   const fetchData = async () => {
@@ -70,8 +75,6 @@ export default function AdminGrapgh({
 
   // Use the sortedData array to render the table
 
-
-
   return (
     <div className=" flex-auto overflow-scroll w-auto bg-slate-50">
       <div className=" bg-white h-[150px] md:h-24 p-8 pt-[50px] md:flex md:flex-row grid grid-rows-2 gap-y-12 items-center justify-between ">
@@ -90,8 +93,9 @@ export default function AdminGrapgh({
       <div
         type="button"
         onClick={callParentFunction}
-        className={` justify-self-start self-center z-20 md:hidden ${!isOpen ? "absolute w-[10%] " : " absolute  "
-          }`}
+        className={` justify-self-start self-center z-20 md:hidden ${
+          !isOpen ? "absolute w-[10%] " : " absolute  "
+        }`}
       >
         <Image
           alt="navbararrow"
@@ -123,6 +127,32 @@ export default function AdminGrapgh({
             </div>
           </div>
         </div>
+
+        <div className="flex items-center space-x-4">
+        
+<div date-rangepicker class="flex items-center">
+  <div class="relative">
+    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+        </svg>
+    </div>
+    <input name="start" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date start"/>
+  </div>
+  <span class="mx-4 text-gray-500">to</span>
+  <div class="relative">
+    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+        </svg>
+    </div>
+    <input name="end" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date end"/>
+</div>
+</div>
+
+    </div>
+
+
         <button
           onClick={handleButtonClick}
           className="w-full mt-8 h-[38px] bg-teal-600 rounded-md text-white "
@@ -266,7 +296,6 @@ export default function AdminGrapgh({
               </tbody>
             </table>
           </div>
-
         </div>
       </div>
     </div>

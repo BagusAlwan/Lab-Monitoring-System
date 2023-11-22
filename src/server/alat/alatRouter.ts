@@ -43,6 +43,24 @@ alatRouter.get("/group/:lab", async (request: Request, reponse: Response) => {
     }
 })
 
+alatRouter.get("/group/:lab/:startDate/:endDate", async (request: Request, reponse: Response) => {
+    const lab: string = request.params.lab;
+    const startDateString: string = request.params.startDate;
+    const endDateString: string = request.params.endDate;
+
+    const startDate: Date = new Date(startDateString);
+    const endDate: Date = new Date(endDateString);
+    try {
+        const alat = await AlatService.filterAlatLab(lab, startDate, endDate)
+        if (alat) {
+            return reponse.status(200).json(alat)
+        }
+        return reponse.status(404).json("no alat");
+    } catch (err: any) {
+        return reponse.status(500).json(err.message);
+    }
+})
+
 //GET per Alat
 alatRouter.get("/chart/:alat", async (request: Request, reponse: Response) => {
     const alat: string = request.params.alat;
@@ -98,3 +116,4 @@ alatRouter.delete("/:id", async (request: Request, reponse: Response) => {
         return reponse.status(500).json(err.message);
     }
 })
+

@@ -50,6 +50,25 @@ export const getMemberLab = async (lab: string): Promise<Member[] | null> => {
     })
 }
 
+export const filterMembers = async (lab: string, startDate: Date, endDate: Date): Promise<Member[] | null> => {
+    return db.rPLDmember.findMany({
+        where: {
+            lab,
+            time: {
+                gte: startDate, 
+                lte: endDate, 
+            }
+        },
+        select: {
+            id: true,
+            name: true,
+            nim: true,
+            lab: true,
+            time: true
+        },
+    })
+}
+
 export const createMember = async (member: Omit<Member, 'id'>): Promise<Member> => {
     const { name, nim, lab } = member;
     return db.rPLDmember.create({
