@@ -27,7 +27,7 @@ export default function AlatPage() {
     console.log("NIM:", nim);
 
 
-    const res = await fetch("http://localhost:8080/api/alat", {
+    const res = await fetch("http://10.6.45.100:8080/api/alat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export default function AlatPage() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/alatData/group/${lab}`,
+        `http://10.6.45.100:8080/api/alatData/group/${lab}`,
         {
           method: "GET",
           headers: {

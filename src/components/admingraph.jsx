@@ -2,11 +2,12 @@ import Image from "next/image";
 import dot from "../components/images/dot.svg";
 import { DatePicker } from "antd";
 import DateNow from "../components/date";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 import VisitorChart from "./visitorchart";
 import { useRouter } from "next/navigation";
+import moment from 'moment';
 
 
 export default function AdminGrapgh({
@@ -32,32 +33,41 @@ export default function AdminGrapgh({
   };
 
   const { RangePicker } = DatePicker;
-  const [selectedRange, setSelectedRange] = useState(null);
+  const initialDateRange = useRef({
+    startDate: moment('2023-01-01'),
+    endDate: moment(),
+  });
+
+  const [selectedRange, setSelectedRange] = useState({
+    startDate: initialDateRange.current.startDate,
+    endDate: initialDateRange.current.endDate,
+  });
 
   const handleDateChange = (dates, dateStrings) => {
-    
-   
     setSelectedRange({
       startDate: dates[0],
       endDate: dates[1],
     });
-
-    
+    initialDateRange.current = {
+      startDate: dates[0],
+      endDate: dates[1],
+    };
     console.log('Selected Range:', dateStrings);
   };
 
   const [visitorData, setVisitorData] = useState([]);
-  const fetchData = async () => {
+  const fetchDataWithDateRange = async (startDate, endDate) => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/api/member/group/${lab}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const formattedStartDate = startDate.format('YYYY-MM-DD');
+      const formattedEndDate = endDate.clone().add(1, 'day').format('YYYY-MM-DD');
+      const url = `http://10.6.45.100:8080/api/member/group/${lab}/${formattedStartDate}/${formattedEndDate}`;
+
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -71,12 +81,15 @@ export default function AdminGrapgh({
   };
 
   useEffect(() => {
-    fetchData(); // Fetch data when the component mounts
+    fetchDataWithDateRange(selectedRange.startDate, selectedRange.endDate);
+  }, [selectedRange]);
 
-    const intervalId = setInterval(fetchData, 5000); // Fetch data every 5 seconds
-
-    return () => clearInterval(intervalId); // Clean up the interval on unmount
-  }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchDataWithDateRange(selectedRange.startDate, selectedRange.endDate);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [selectedRange.startDate, selectedRange.endDate]);
 
   const sortedData = visitorData.sort((a, b) => {
     const timeA = new Date(a.time);
@@ -104,9 +117,8 @@ export default function AdminGrapgh({
       <div
         type="button"
         onClick={callParentFunction}
-        className={` justify-self-start self-center z-20 md:hidden ${
-          !isOpen ? "absolute w-[10%] " : " absolute  "
-        }`}
+        className={` justify-self-start self-center z-20 md:hidden ${!isOpen ? "absolute w-[10%] " : " absolute  "
+          }`}
       >
         <Image
           alt="navbararrow"
@@ -140,18 +152,10 @@ export default function AdminGrapgh({
         </div>
 
         <RangePicker
-        onChange={handleDateChange}
-        size="medium" 
-        className= "mt-4 p-2 sm:w-[500px]"
-      />
-      
-        {/* contoh buat ka bagus pm :> */}
-        {selectedRange && (
-        <div>
-          <p className="text-black">Start Date: {selectedRange.startDate.format('YYYY-MM-DD')}</p>
-          <p className="text-black">End Date: {selectedRange.endDate.format('YYYY-MM-DD')}</p>
-        </div>
-      )}
+          onChange={handleDateChange}
+          size="medium"
+          className="mt-4 p-2 sm:w-[500px]"
+        />
 
         <button
           onClick={handleButtonClick}

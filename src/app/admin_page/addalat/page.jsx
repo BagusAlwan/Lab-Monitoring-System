@@ -16,7 +16,7 @@ export default function CRUDAlat() {
   const createItem = async () => {
     if (itemAlat.trim() !== "") {
       setItems([...items, { id: Date.now(), alat: itemAlat }]);
-      const res = await fetch("http://localhost:8080/api/alatData/", {
+      const res = await fetch("http://10.6.45.100:8080/api/alatData/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export default function CRUDAlat() {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/alatData/group/${currentLab}`,
+        `http://10.6.45.100:8080/api/alatData/group/${currentLab}`,
         {
           method: "GET",
           headers: {
@@ -64,7 +64,7 @@ export default function CRUDAlat() {
 
   const deleteItem = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/alatData/${id}`, {
+      const response = await fetch(`http://10.6.45.100:8080/api/alatData/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export default function CRUDAlat() {
             type="text"
             placeholder="Nama Alat"
             value={itemAlat}
-            onChange={(e) => setItemAlat(e.target.value.toLowerCase())}
+            onChange={(e) => setItemAlat(e.target.value)}
             className="p-3 rounded w-3/4 focus:outline-none text-black border-2"
           />
           <button
