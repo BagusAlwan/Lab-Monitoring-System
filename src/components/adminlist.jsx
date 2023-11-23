@@ -141,7 +141,7 @@ export default function AdminList({
         <RangePicker
         onChange={handleDateChange}
         size="medium" 
-        className= "mt-4 p-2 w-[500px]"
+        className= "mt-4 p-2 sm:w-[500px]"
       />
       
         {/* contoh buat ka bagus pm :> */}

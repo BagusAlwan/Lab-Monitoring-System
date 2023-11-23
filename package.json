@@ -28,11 +28,7 @@
     "firebase": "^10.4.0",
     "firebase-admin": "^11.11.0",
     "firebase-auth": "^0.1.2",
-<<<<<<< HEAD
-    "flowbite": "^2.2.0",
-=======
-    "flowbite-datepicker": "^1.2.4",
->>>>>>> 9bc85ebb5d84651551c41433956aaae3988d3344
+    
     "google-auth-library": "^8.9.0",
     "google-spreadsheet": "^4.0.2",
     "googleapis": "^126.0.0",
