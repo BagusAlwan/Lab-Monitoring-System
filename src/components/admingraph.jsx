@@ -1,14 +1,13 @@
 import Image from "next/image";
 import dot from "../components/images/dot.svg";
-//import { DatePicker } from "antd";
+import { DatePicker } from "antd";
 import DateNow from "../components/date";
 import { useState, useEffect } from "react";
 import navbararrow from "../components/images/navbararrow.svg";
 import navbararrow2 from "../components/images/navbararrow2.svg";
 import VisitorChart from "./visitorchart";
 import { useRouter } from "next/navigation";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+
 
 export default function AdminGrapgh({
   isOpen,
@@ -139,6 +138,21 @@ export default function AdminGrapgh({
             </div>
           </div>
         </div>
+
+        <RangePicker
+        onChange={handleDateChange}
+        size="medium" 
+        className= "mt-4 p-2 sm:w-[500px]"
+      />
+      
+        {/* contoh buat ka bagus pm :> */}
+        {selectedRange && (
+        <div>
+          <p className="text-black">Start Date: {selectedRange.startDate.format('YYYY-MM-DD')}</p>
+          <p className="text-black">End Date: {selectedRange.endDate.format('YYYY-MM-DD')}</p>
+        </div>
+      )}
+
         <button
           onClick={handleButtonClick}
           className="w-full mt-6 h-[38px] bg-teal-600 rounded-md text-white "
