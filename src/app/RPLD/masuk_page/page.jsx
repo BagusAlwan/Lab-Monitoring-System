@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import yellowdots from '../../../components/images/yellowdots.png'
 import robot from '../../../components/images/robot.png'
+import ugm from '../../../components/images/Lambang UGM-hitam.png'
 
 export default function DataPage() {
     return (
@@ -13,7 +14,15 @@ export default function DataPage() {
                 alt="Main Screen"
                 objectFit='contain'
             />
-            <div className='mt-[100px] md:mt-0 lg:mt-[100px] flex justify-center items-center'>
+            <div className='pt-[75px] flex justify-center items-center'>
+                <Image
+                    src={ugm}
+                    alt="Main Screen"
+                    width={70}
+                    height={70}
+                />
+            </div>
+            <div className='mt-[80px] md:mt-0 lg:mt-[80px] flex justify-center items-center'>
                 <Image
                     src={robot}
                     alt="Main Screen"

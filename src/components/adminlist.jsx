@@ -8,6 +8,7 @@ import navbararrow2 from "../components/images/navbararrow2.svg";
 import ToolsChart from "./toolschart";
 import { useRouter } from "next/navigation";
 import moment from 'moment';
+import ugm from '../components/images/Lambang UGM-hitam.png'
 
 export default function AdminList({
   isOpen,
@@ -222,7 +223,7 @@ export default function AdminList({
 
         {/* sm and below graph */}
         <div className=" mt-[47px] w-[350px] sm:hidden grid grid-rows-2 gap-8 pt-8">
-          <div>
+          <div className="max-h-[500px] overflow-y-auto">
             <table
               className="w-[350px]  table-auto border border-gray-300 text-center text-black space-y-4"
               border="1"
@@ -277,6 +278,23 @@ export default function AdminList({
           <div className="w-[350px]">
             <ToolsChart chartType="column" data={visitorData} />
           </div>
+        </div>
+      </div>
+      <div className="bg-gray-200 p-4 py-5 flex justify-end items-center md:mt-[800px] xl:mt-[400px]">
+        {/* Right-aligned content */}
+        <div className="text-sm text-gray-600 flex items-center space-x-2">
+          <Image
+            src={ugm}
+            alt="Main Screen"
+            width={40}
+            height={40}
+          />
+          <div className="flex= flex-col">
+            <span>UNIVERSITAS GADJAH MADA </span><br />
+            <span>Bulaksumur Yogyakarta 55281</span><br />
+            <span>Email: paholoimanprakoso@ugm.ac.id</span>
+          </div>
+
         </div>
       </div>
     </div>

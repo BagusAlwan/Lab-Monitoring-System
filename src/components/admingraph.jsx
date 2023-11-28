@@ -8,6 +8,7 @@ import navbararrow2 from "../components/images/navbararrow2.svg";
 import VisitorChart from "./visitorchart";
 import { useRouter } from "next/navigation";
 import moment from 'moment';
+import ugm from '../components/images/Lambang UGM-hitam.png'
 
 
 export default function AdminGrapgh({
@@ -252,7 +253,7 @@ export default function AdminGrapgh({
               timeRange="Monthly"
             />
           </div>
-          <div className="max-h-[1000px] overflow-y-auto">
+          <div className="max-h-[800px] overflow-y-auto">
             <table
               className="w-[350px] table-auto border border-black text-center text-black"
               border="2"
@@ -300,6 +301,24 @@ export default function AdminGrapgh({
               </tbody>
             </table>
           </div>
+        </div>
+
+      </div>
+      <div className="bg-gray-200 p-4 py-5 flex justify-end items-center md:mt-[800px] xl:mt-[400px]">
+        {/* Right-aligned content */}
+        <div className="text-sm text-gray-600 flex items-center space-x-2">
+          <Image
+            src={ugm}
+            alt="Main Screen"
+            width={40}
+            height={40}
+          />
+          <div className="flex= flex-col">
+            <span>UNIVERSITAS GADJAH MADA </span><br/>
+            <span>Bulaksumur Yogyakarta 55281</span><br/>
+            <span>Email: paholoimanprakoso@ugm.ac.id</span>
+          </div>
+
         </div>
       </div>
     </div>

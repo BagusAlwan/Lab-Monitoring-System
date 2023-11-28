@@ -4,6 +4,7 @@ import Image from 'next/image'
 import yellowdots from '../../../components/images/yellowdots.png'
 import logo from '../../../components/images/logo.png'
 import Link from 'next/link'
+import ugm from '../../../components/images/Lambang UGM-hitam.png'
 
 export default function HomePage() {
     return (
@@ -14,7 +15,15 @@ export default function HomePage() {
                 alt="Main Screen"
                 objectFit='contain'
             />
-            <div className="mt-[51px] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">Halo! <br />Kamu berada di</div>
+            <div className='pt-[75px] flex justify-center items-center'>
+                <Image
+                    src={ugm}
+                    alt="Main Screen"
+                    width={70}
+                    height={70}
+                />
+            </div>
+            <div className="mt-[15px] h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">Halo! <br />Kamu berada di</div>
             <div className='pt-[75px] flex justify-center items-center'>
                 <Image
                     src={logo}

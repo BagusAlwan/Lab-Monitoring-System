@@ -19,6 +19,7 @@ export default function Layout({ auth, title, lab }) {
   };
 
   return (
+
     <div className="h-screen overflow-hidden flex flex-row justify-start ">
       <Sidebar isOpen={isSidebarOpen} auth={auth} />
 
@@ -26,7 +27,8 @@ export default function Layout({ auth, title, lab }) {
 
       {/* Content */}
 
-      {showAdminGraph ? <AdminGraph title={title}  isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} lab={lab} /> : <AdminList title={title} isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} lab={lab} />}
+      {showAdminGraph ? <AdminGraph title={title} isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} lab={lab} /> : <AdminList title={title} isOpen={!isSidebarOpen} toggleNav={toggleNav} toggleContent={toggleContent} lab={lab} />}
+
     </div>
   );
 }

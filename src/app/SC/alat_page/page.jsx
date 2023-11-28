@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import yellowdots from "../../../components/images/yellowdots.png";
-import { useState } from "react"; // Import the useState hook
+import { useState, useEffect } from "react"; // Import the useState hook
 import { useSearchParams, useRouter } from "next/navigation";
+import ugm from '../../../components/images/Lambang UGM-hitam.png'
 
 export default function AlatPage() {
   const router = useRouter();
@@ -85,7 +86,15 @@ export default function AlatPage() {
   return (
     <div className="p-[18px] bg-white h-screen w-screen overflow-auto">
       <Image src={yellowdots} alt="Main Screen" objectFit="contain" />
-      <div className="mt-[100px] md:mt-0 lg:mt-[100px]     h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
+      <div className='pt-[75px] flex justify-center items-center'>
+        <Image
+          src={ugm}
+          alt="Main Screen"
+          width={70}
+          height={70}
+        />
+      </div>
+      <div className="mt-[80px] md:mt-0 lg:mt-[80px]     h-7 text-center text-gray-800 text-xl font-medium leading-snug drop-shadow-lg">
         Pilih alat yg digunakan :
       </div>
       <div className="pt-[75px] flex justify-center items-center">
